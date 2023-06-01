@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Propinas</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Calculadora de Propinas</h1>
+  
+  <form id="calculator-form">
+    <label for="bill">Monto de la cuenta:</label>
+    <input type="number" id="bill" required>
+    
+    <!-- <label for="tip">Porcentaje de propina:</label>
+    <select id="tip">
+      <option value="0.1">10%</option>
+      <option value="0.15">15%</option>
+      <option value="0.2">20%</option>
+      <option value="0.25">25%</option>
+    </select> -->
+    <select class="form-select" aria-label="Default select example" id = "tip">
+      <option value="0.1">10%</option>
+      <option value="0.15">15%</option>
+      <option value="0.2">20%</option>
+      <option value="0.25">25%</option>
+    </select>
+    
+    <form id="calculator-form">
+      <label for="bill">Entre cuanteas personas desea dividir la cuenta </label>
+      <input type="number" id="personas" required>
+    <button type="submit">Calcular</button>
+  </form>
+
+  <div id="result" class="hidden">
+    <p>Monto de la cuenta: <span id="bill-amount"></span></p>
+    <p>Porcentaje de propina: <span id="tip-percentage"></span></p>
+    <p>Propina: <span id="tip-amount"></span></p>
+    <p>Total a pagar: <span id="total-amount"></span></p>
+    <p>Cada persona debe pagar un total de : <span id="valorPorPersona"></span></p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
