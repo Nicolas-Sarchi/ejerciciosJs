@@ -2,10 +2,13 @@
 <html>
 <head>
   <title>Calculadora de Propinas</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet"  href="styles.css">
+
 </head>
-<body>
-  <h1>Calculadora de Propinas</h1>
+<body >
+  .<div class="container">
+    
+  <h1 class = "title">Calculadora de Propinas</h1>
   
   <form id="calculator-form">
     <label for="bill">Monto de la cuenta:</label>
@@ -25,10 +28,10 @@
       <option value="0.25">25%</option>
     </select>
     
-    <form id="calculator-form">
-      <label for="bill">Entre cuanteas personas desea dividir la cuenta </label>
+    
+      <label for="bill">Entre cuantas personas desea dividir la cuenta </label> <br>
       <input type="number" id="personas" required>
-    <button type="submit">Calcular</button>
+      <button type="submit">Calcular</button>
   </form>
 
   <div id="result" class="hidden">
@@ -39,8 +42,11 @@
     <p>Cada persona debe pagar un total de : <span id="valorPorPersona"></span></p>
 
   </div>
+</div>
+
 
   <script src="script.js"></script>
+  
 </body>
 </html>
 
