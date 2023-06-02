@@ -18,18 +18,22 @@ function agregarEmpleado(nombre, correo, telefono) {
   cuerpoTabla.appendChild(nuevaFila);
 }
 
-function eliminarEmpleado(id) {
+function eliminarEmpleado(id){
   const indice = empleados.findIndex(empleado => empleado.id === id);
-  if (indice !== -1) {
-    empleados.splice(indice, 1);
-    const fila = document.querySelector(`#tabla-empleados tbody tr:nth-child(${indice + 1})`);
-    fila.remove();
+  if (indice !== -1){
+      
+    }
+
   }
-}
+
+  
+
 
 const formulario = document.querySelector('#formulario-empleado');
-formulario.addEventListener('submit', function(e) {
-  e.preventDefault();
+
+
+formulario.addEventListener('submit', function(event) {
+  event.preventDefault();
   const nombre = document.querySelector('#nombre').value;
   const correo = document.querySelector('#correo').value;
   const telefono = document.querySelector('#telefono').value;
