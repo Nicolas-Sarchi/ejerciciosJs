@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Películas</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="../leopard.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" id="crearLink" href="#">Crear Película</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="eliminarLink" href="#">Eliminar Película</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="consultarLink" href="#">Consultar Películas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="mostrarTodasLink" href="#">Mostrar Todas</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div id="crearPelicula" class="mb-4">
+      <h2>Crear Película</h2>
+      <form id="crearForm">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título:</label>
+          <input type="text" class="form-control" id="titulo" required>
+        </div>
+        <div class="mb-3">
+          <label for="genero" class="form-label">Género:</label>
+          <input type="text" class="form-control" id="genero" required>
+        </div>
+        <div class="mb-3">
+          <label for="duracion" class="form-label">Duración:</label>
+          <input type="text" class="form-control" id="duracion" required>
+        </div>
+        <div class="mb-3">
+          <label for="director" class="form-label">Director:</label>
+          <input type="text" class="form-control" id="director" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+    </div>
+
+    <div id="eliminarPelicula" class="mb-4">
+      <h2>Eliminar Película</h2>
+      <form id="eliminarForm">
+        <div class="mb-3">
+          <label for="tituloEliminar" class="form-label">Título:</label>
+          <input type="text" class="form-control" id="tituloEliminar" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+      <div id="eliminarResultado"></div>
+    </div>
+
+    <div id="consultarPeliculas" class="mb-4">
+      <h2>Consultar Películas</h2>
+      <form id="buscarForm">
+        <div class="mb-3">
+          <label for="buscarTitulo" class="form-label">Buscar por Título:</label>
+          <input type="text" class="form-control" id="buscarTitulo" required>
+        </div>
+        <button type="button" class="btn btn-primary" id="buscarBtn">Buscar</button>
+      </form>
+      <div id="resultado"></div>
+    </div>
+
+    <div id="mostrarTodas" class="mb-4">
+      <h2>Películas Disponibles</h2>
+      <div id="peliculasContainer" class="row"></div>
+    </div>
+  </div>
+
+  foot
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="peliculas.js"></script>
+</body>
+</html>

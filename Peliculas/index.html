@@ -9,62 +9,87 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </head>
 <body>
-
        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
            <div class="container-fluid">
-               <a class="navbar-brand" href="#">Movies</a>
+               <a class="navbar-brand" href="#">Movies AB <img src="leopard.png" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                    <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarID">
                    <div class="navbar-nav">
-                       <a class="nav-link active" aria-current="page" href="#">Home</a>
+                       <a class="nav-link active" aria-current="page" href="#">Crear</a>
                        
                    </div>
                    <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="#">Eliminar</a>
                 </div>
+                <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="#">Buscar</a>
+              </div>
+              <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Ver todas</a>
+            </div>
                </div>
            </div>
        </nav>
 
 
-<form class="row g-3 needs-validation" id="formulario" >
-  <div class="col-md-3">
-    <label for="validationCustom01" class="form-label">Titulo</label>
-    <input type="text" class="form-control" id="titulo"  required>
+       <div class="container mt-4">
+        <div id="crearPelicula" class="mb-4">
+          <h2>Crear Película</h2>
+          <form id="crearForm">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Título:</label>
+              <input type="text" class="form-control" id="titulo" required>
+            </div>
+            <div class="mb-3">
+              <label for="genero" class="form-label">Género:</label>
+              <input type="text" class="form-control" id="genero" required>
+            </div>
+            <div class="mb-3">
+              <label for="duracion" class="form-label">Duración:</label>
+              <input type="text" class="form-control" id="duracion" required>
+            </div>
+            <div class="mb-3">
+              <label for="director" class="form-label">Director:</label>
+              <input type="text" class="form-control" id="director" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </form>
+        </div>
     
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom02" class="form-label">Genero</label>
-    <input type="text" class="form-control" id="genero"  required>
+        <div id="eliminarPelicula" class="mb-4">
+          <h2>Eliminar Película</h2>
+          <form id="eliminarForm">
+            <div class="mb-3">
+              <label for="tituloEliminar" class="form-label">Título:</label>
+              <input type="text" class="form-control" id="tituloEliminar" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+          </form>
+        </div>
     
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom02" class="form-label">Duraciòn</label>
-    <input type="text" class="form-control" id="duracion"  required>
-
-  </div>
-  <div class="col-md-3">
-    <label for="validationCustom02" class="form-label">Autor</label>
-    <input type="text" class="form-control" id="autor"  required>
+        <div id="consultarPeliculas" class="mb-4">
+          <h2>Consultar Películas</h2>
+          <form id="buscarForm">
+            <div class="mb-3">
+              <label for="buscarTitulo" class="form-label">Buscar por Título:</label>
+              <input type="text" class="form-control" id="buscarTitulo" required>
+            </div>
+            <button type="button" class="btn btn-primary" id="buscarBtn">Buscar</button>
+          </form>
+          <div id="resultado"></div>
+        </div>
     
-  </div>
-  
-  
- 
-  <div class="col-12">
-    <button class="btn btn-outline-dark" type="submit">Agregar</button>
-  </div>
-</form>
+        <div id="mostrarTodas" class="mb-4">
+          <h2>Películas Disponibles</h2>
+          <div id="peliculasContainer" class="row"></div>
+        </div>
+      </div>
 
-
-
-<div class="mostrar-peliculas">
-
-</div>
-
+    
+      
 <script src="movies.js"></script>
 </body>
 </html>

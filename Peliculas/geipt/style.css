@@ -1,0 +1,21 @@
+#resultado, #peliculasContainer{
+    margin-top: 5%;
+}
+
+.card{
+    border: 2px solid #000;
+}
+
+.card:hover{
+    transition: ease-in;
+}
+
+/* .card-body{
+    background-color: rgb(173, 173, 253);
+} */
+
+.card:hover{
+    transition: 0.5s;
+    scale: 1.1;
+    border-color: #42ff1c;
+}
