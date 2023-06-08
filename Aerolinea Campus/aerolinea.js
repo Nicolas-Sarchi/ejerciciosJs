@@ -116,60 +116,144 @@ formCliente.addEventListener('submit', agregarCliente);
 mostrarClientes();
 
 
-const rutas = [];
 
-const formRuta = document.querySelector('#agregar-ruta');
-const cuerpoTablaRutas = document.querySelector('#tabla-rutas tbody');
 
-function agregarRuta(event) {
-    event.preventDefault();
-    const nombreRuta = document.querySelector('#nombreRuta').value;
-    const valorTiquete = document.querySelector('#valorTiquete').value;
-    const ciudadOrigen = document.querySelector('#ciudadOrigen').value;
-    const ciudadDestino = document.querySelector('#ciudadDestino').value;
-    const puntosFidelizacion = document.querySelector('#puntosFidelizacion').value;
+// const rutas = [];
 
-    const id = generarIdRuta(ciudadOrigen, ciudadDestino);
+// const formRuta = document.querySelector('#agregar-ruta');
+// const cuerpoTablaRutas = document.querySelector('#tabla-rutas tbody');
 
-    const ruta = {
-        id,
-        nombreRuta,
-        valorTiquete,
-        ciudadOrigen,
-        ciudadDestino,
-        puntosFidelizacion
-    };
+// function agregarRuta(event) {
+//     event.preventDefault();
+//     const nombreRuta = document.querySelector('#nombreRuta').value;
+//     const valorTiquete = document.querySelector('#valorTiquete').value;
+//     const ciudadOrigen = document.querySelector('#ciudadOrigen').value;
+//     const ciudadDestino = document.querySelector('#ciudadDestino').value;
+//     const puntosFidelizacion = document.querySelector('#puntosFidelizacion').value;
 
-    rutas.push(ruta);
+//     const id = generarIdRuta(ciudadOrigen, ciudadDestino);
 
-    formRuta.reset();
+//     const ruta = {
+//         id,
+//         nombreRuta,
+//         valorTiquete,
+//         ciudadOrigen,
+//         ciudadDestino,
+//         puntosFidelizacion
+//     };
 
-    mostrarRutas();
+//     rutas.push(ruta);
+
+//     formRuta.reset();
+
+//     mostrarRutas();
+// }
+
+// function generarIdRuta(ciudadOrigen, ciudadDestino) {
+//     const idCiudadOrigen = ciudadOrigen.substring(0, 3).toUpperCase();
+//     const idCiudadDestino = ciudadDestino.substring(0, 3).toUpperCase();
+//     return `${idCiudadOrigen}-${idCiudadDestino}`;
+// }
+
+// function mostrarRutas() {
+//     cuerpoTablaRutas.innerHTML = '';
+
+//     rutas.forEach((ruta) => {
+//         const nuevaFila = document.createElement('tr');
+//         nuevaFila.classList.add('table-primary');
+//         nuevaFila.innerHTML = `
+//             <td>${ruta.id}</td>
+//             <td>${ruta.nombreRuta}</td>
+//             <td>${ruta.valorTiquete}</td>
+//             <td>${ruta.ciudadOrigen}</td>
+//             <td>${ruta.ciudadDestino}</td>
+//             <td>${ruta.puntosFidelizacion}</td>
+//             <td><button class="btn btn-danger btn-sm btn-eliminar-ruta" data-id="${ruta.id}">Eliminar</button></td>
+
+//         `;
+//         const btnEliminarRuta = nuevaFila.querySelector('.btn-eliminar-ruta');
+//         btnEliminarRuta.addEventListener('click', function () {
+//             const rutaId = btnEliminar.dataset.id;
+//             eliminarRuta(rutaId);
+//         });
+
+//         cuerpoTablaRutas.appendChild(nuevaFila);
+//     });
+// }
+
+// function eliminarRuta(identificacion) {
+//     
+
+//    
+//         rutas.splice(index, 1);
+//         mostrarRutas();
+//     
+// }
+
+
+
+// formRuta.addEventListener('submit', agregarRuta);   
+
+
+
+// Obtener elementos del DOM
+var formRuta = document.getElementById("formRuta");
+var tablaRutas = document.getElementById("tablaRutas");
+
+// Función para generar una nueva ruta
+function generarRuta() {
+  var id = formRuta.ciudadOrigen.value.substr(0, 3) + formRuta.ciudadDestino.value.substr(0, 3);
+  var nombre = formRuta.nombre.value;
+  var valorTiquete = parseFloat(formRuta.valorTiquete.value);
+  var ciudadOrigen = formRuta.ciudadOrigen.value;
+  var ciudadDestino = formRuta.ciudadDestino.value;
+  var puntosFidelizacion = parseInt(formRuta.puntosFidelizacion.value);
+
+  var ruta = {
+    id: id,
+    nombre: nombre,
+    valorTiquete: valorTiquete,
+    ciudadOrigen: ciudadOrigen,
+    ciudadDestino: ciudadDestino,
+    puntosFidelizacion: puntosFidelizacion
+  };
+
+  rutas.push(ruta);
+
+  mostrarRutas();
+  limpiarFormulario();
 }
 
-function generarIdRuta(ciudadOrigen, ciudadDestino) {
-    const idCiudadOrigen = ciudadOrigen.substring(0, 3).toUpperCase();
-    const idCiudadDestino = ciudadDestino.substring(0, 3).toUpperCase();
-    return `${idCiudadOrigen}-${idCiudadDestino}`;
-}
-
+// Función para mostrar las rutas en la tabla
 function mostrarRutas() {
-    cuerpoTablaRutas.innerHTML = '';
-
-    rutas.forEach((ruta) => {
-        const nuevaFila = document.createElement('tr');
-        nuevaFila.classList.add('table-primary');
-        nuevaFila.innerHTML = `
-            <td>${ruta.id}</td>
-            <td>${ruta.nombreRuta}</td>
-            <td>${ruta.valorTiquete}</td>
-            <td>${ruta.ciudadOrigen}</td>
-            <td>${ruta.ciudadDestino}</td>
-            <td>${ruta.puntosFidelizacion}</td>
-        `;
-
-        cuerpoTablaRutas.appendChild(nuevaFila);
-    });
+  var tablaHTML = "";
+  for (var i = 0; i < rutas.length; i++) {
+    tablaHTML += `
+      <tr>
+        <td>${rutas[i].id}</td>
+        <td>${rutas[i].nombre}</td>
+        <td>$${rutas[i].valorTiquete}</td>
+        <td>${rutas[i].ciudadOrigen}</td>
+        <td>${rutas[i].ciudadDestino}</td>
+        <td>${rutas[i].puntosFidelizacion}</td>
+        <td><button onclick="eliminarRuta(${i})">Eliminar</button></td>
+      </tr>
+    `;
+  }
+  tablaRutas.innerHTML = tablaHTML;
 }
 
-formRuta.addEventListener('submit', agregarRuta);
+
+
+// Función para eliminar una ruta
+function eliminarRuta(index) {
+  rutas.splice(index, 1);
+  mostrarRutas();
+}
+
+// Evento al enviar el formulario de ruta
+formRuta.addEventListener("submit", function(event) {
+  event.preventDefault();
+  generarRuta();
+});
+
