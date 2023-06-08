@@ -9,35 +9,36 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-light bg-primary text-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Aerolinea Campus </a>
+            <a class="navbar-brand text-white" href="#">Aerolinea Campus </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
                 aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
                     
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Clientes</a>
+                    <a class="nav-link active text-white" aria-current="page" href="#">Clientes</a>
                     
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Rutas</a>
+                    <a class="nav-link active text-white" aria-current="page" href="#">Rutas</a>
                     
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Comprar Tiquetes</a>
+                    <a class="nav-link active text-white" aria-current="page" href="#">Comprar Tiquetes</a>
                     
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="gestion-clientes">
+    <div class="gestion-clientes container mt-5 text-center mb-5">
+      
         <form class="row g-3 needs-validation" id="agregar-cliente">
           <div class="col-md-4">
             <label for="numeroIdentificacion" class="form-label">Numero de identificacion</label>
@@ -76,7 +77,7 @@
             <button class="btn btn-primary" type="submit">Agregar</button>
           </div>
         </form>
-        <div class="table-responsive">
+        <div class="table-responsive mt-5">
             <table class="table table-striped
             table-hover	
             table-borderless
@@ -101,6 +102,53 @@
         </div>
         
     </div>
+    <div class="gestion-rutas container mt-5 text-center mb-10">
+      <form class="row g-3 needs-validation" id="agregar-ruta">
+          <div class="col-md-4">
+              <label for="nombreRuta" class="form-label">Nombre de la Ruta</label>
+              <input type="text" class="form-control" id="nombreRuta" required>
+          </div>
+          <div class="col-md-4">
+              <label for="valorTiquete" class="form-label">Valor del Tiquete</label>
+              <input type="number" class="form-control" id="valorTiquete" required>
+          </div>
+          <div class="col-md-4">
+              <label for="ciudadOrigen" class="form-label">Ciudad de Origen</label>
+              <input type="text" class="form-control" id="ciudadOrigen" required>
+          </div>
+          <div class="col-md-4">
+              <label for="ciudadDestino" class="form-label">Ciudad de Destino</label>
+              <input type="text" class="form-control" id="ciudadDestino" required>
+          </div>
+          <div class="col-md-4">
+              <label for="puntosFidelizacion" class="form-label">Puntos para Fidelización</label>
+              <input type="number" class="form-control" id="puntosFidelizacion" required>
+          </div>
+          <div class="col-12">
+              <button class="btn btn-primary" type="submit">Agregar</button>
+          </div>
+      </form>
+      <div class="table-responsive mt-5">
+          <table class="table table-striped
+          table-hover
+          table-borderless
+          table-primary
+          align-middle" id="tabla-rutas">
+              <thead class="table-light">
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre de la Ruta</th>
+                      <th>Valor del Tiquete</th>
+                      <th>Ciudad de Origen</th>
+                      <th>Ciudad de Destino</th>
+                      <th>Puntos para Fidelización</th>
+                  </tr>
+              </thead>
+              <tbody class="table-group-divider">
+              </tbody>
+          </table>
+      </div>
+  </div>
     <script src="aerolinea.js"></script>
 </body>
 </html>
