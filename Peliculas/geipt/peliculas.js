@@ -78,10 +78,10 @@ const peliculasMap = new Map();
     document.getElementById('mostrarTodasLink').addEventListener('click', mostrarTodasPeliculas);
 
     // Navbar
-    const crearLink = document.getElementById('crearLink');
     const eliminarLink = document.getElementById('eliminarLink');
     const consultarLink = document.getElementById('consultarLink');
     const mostrarTodasLink = document.getElementById('mostrarTodasLink');
+    const crearLink = document.getElementById('crearLink');
 
     crearLink.addEventListener('click', function(event) {
       event.preventDefault();
