@@ -1,4 +1,4 @@
-// Add this function to your existing JavaScript code
+
 function showSection(sectionId) {
     const sections = ['home', 'clientes', 'rutas', 'tiquetes'];
     sections.forEach((id) => {
@@ -11,7 +11,7 @@ function showSection(sectionId) {
     });
 }
 
-// Add event listeners to the navbar items
+
 document.querySelector("a[href='#Home']").addEventListener("click", () => showSection("home"));
 document.querySelector("a[href='#Clientes']").addEventListener("click", () => showSection("clientes"));
 document.querySelector("a[href='#Rutas']").addEventListener("click", () => showSection("rutas"));
