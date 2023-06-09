@@ -37,23 +37,10 @@
             </div>
         </div>
     </nav>
-    <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    
+
+
+
     <div class="gestion-clientes container mt-5 text-center mb-5">
       
         <form class="row g-3 needs-validation" id="agregar-cliente">
@@ -94,6 +81,14 @@
             <button class="btn btn-primary" type="submit">Agregar</button>
           </div>
         </form>
+
+        <div class="container mt5 pb-5 pt-5">
+          <div class="row">
+            <div class="offset-md-3 col-md-6"></div>
+            <input type="search" class="form-control" id="search">
+          </div>
+          <h3 id="error" class="text-center mt-3"></h3>
+        
         
         <div class="table-responsive mt-5">
             <table class="table table-striped
@@ -101,32 +96,25 @@
             table-borderless
             table-primary
             align-middle" id="tabla-clientes">
-                <thead class="table-light">
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Telefono</th>
-                        <th>Email</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Nacionalidad</th>
-                        <th></th>
-                    </tr>
-                    </thead>
+                
                     <tbody class="table-group-divider">
                         
                     </tbody>
                    
             </table>
         </div>
-        
+      </div>
     </div>
+
+
+
 
     <div class="gestion-rutas container mt-5 text-center mb-10">
       <form class="row g-3 needs-validation" id="agregar-ruta">
           <div class="col-md-4">
               <label for="nombreRuta" class="form-label">Nombre de la Ruta</label>
               <input type="text" class="form-control" id="nombreRuta" required>
+              
           </div>
           <div class="col-md-4">
               <label for="valorTiquete" class="form-label">Valor del Tiquete</label>
