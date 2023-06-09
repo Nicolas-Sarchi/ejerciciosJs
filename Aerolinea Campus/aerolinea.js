@@ -1,3 +1,26 @@
+// Add this function to your existing JavaScript code
+function showSection(sectionId) {
+    const sections = ['home', 'clientes', 'rutas', 'tiquetes'];
+    sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (id === sectionId) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    });
+}
+
+// Add event listeners to the navbar items
+document.querySelector("a[href='#Home']").addEventListener("click", () => showSection("home"));
+document.querySelector("a[href='#Clientes']").addEventListener("click", () => showSection("clientes"));
+document.querySelector("a[href='#Rutas']").addEventListener("click", () => showSection("rutas"));
+document.querySelector("a[href='#Tiquetes']").addEventListener("click", () => showSection("tiquetes"));
+
+// Show the home section by default
+showSection("home");
+
+
 const clientes = [];
 
 const formCliente = document.querySelector('#agregar-cliente');
@@ -37,10 +60,10 @@ function agregarCliente(event) {
     mostrarClientes();
 }
 
-function mostrarClientes() {
+function mostrarClientes(clientesToShow = clientes) {
     cuerpoTabla.innerHTML = '';
 
-    clientes.forEach((cliente) => {
+    clientesToShow.forEach((cliente) => {
         const nuevaFila = document.createElement('tr');
         nuevaFila.classList.add('table-primary');
         nuevaFila.innerHTML = `
@@ -112,6 +135,42 @@ function eliminarCliente(identificacion) {
     }
 }
 
+
+function filterTable() {
+    // Get the user's input value
+    const searchValue = document.querySelector('#search').value.toLowerCase();
+  
+    // Filter the `clientes` array based on the user's input
+    const filteredClientes = clientes.filter((cliente) => {
+      return (
+        cliente.id.toString().includes(searchValue) ||
+        cliente.nombre.toLowerCase().includes(searchValue) ||
+        cliente.apellido.toLowerCase().includes(searchValue) ||
+        cliente.telefono.toLowerCase().includes(searchValue) ||
+        cliente.email.toLowerCase().includes(searchValue) ||
+        cliente.fechaNacimiento.toLowerCase().includes(searchValue) ||
+        cliente.nacionalidad.toLowerCase().includes(searchValue)
+      );
+    });
+  
+    // Update the table with the filtered results
+    mostrarClientes(filteredClientes);
+  
+    const noResults = document.querySelector('#noResults');
+    if (filteredClientes.length === 0) {
+      noResults.style.display = 'block';
+    } else {
+      noResults.style.display = 'none';
+    }
+  }
+  
+ 
+  
+  
+ 
+  
+  
+
 formCliente.addEventListener('submit', agregarCliente);
 mostrarClientes();
 
@@ -173,7 +232,7 @@ function mostrarRutas() {
         `;
         const btnEliminarRuta = nuevaFila.querySelector('.btn-eliminar-ruta');
         btnEliminarRuta.addEventListener('click', function () {
-            const rutaId = btnEliminar.dataset.id;
+            const rutaId = btnEliminarRuta.dataset.id;
             eliminarRuta(rutaId);
         });
 
@@ -181,78 +240,26 @@ function mostrarRutas() {
     });
 }
 
-function eliminarRuta(identificacion) {
-    
-
-   
-        rutas.splice(index, 1);
-        mostrarRutas();
-    
-}
-
+function eliminarRuta(id) {
+    var indice = -1;
+    for (var i = 0; i < rutas.length; i++) {
+      if (rutas[i].id === id) {
+        indice = i;
+        break;
+      }
+    }
+  
+    if (indice !== -1) {
+      rutas.splice(indice, 1);
+      mostrarRutas();
+    }
+  }
+  
 
 
 formRuta.addEventListener('submit', agregarRuta);   
 
 
 
-// Obtener elementos del DOM
-// var formRuta = document.getElementById("formRuta");
-// var tablaRutas = document.getElementById("tablaRutas");
-
-// // Función para generar una nueva ruta
-// function generarRuta() {
-//   var id = formRuta.ciudadOrigen.value.substr(0, 3) + formRuta.ciudadDestino.value.substr(0, 3);
-//   var nombre = formRuta.nombre.value;
-//   var valorTiquete = parseFloat(formRuta.valorTiquete.value);
-//   var ciudadOrigen = formRuta.ciudadOrigen.value;
-//   var ciudadDestino = formRuta.ciudadDestino.value;
-//   var puntosFidelizacion = parseInt(formRuta.puntosFidelizacion.value);
-
-//   var ruta = {
-//     id: id,
-//     nombre: nombre,
-//     valorTiquete: valorTiquete,
-//     ciudadOrigen: ciudadOrigen,
-//     ciudadDestino: ciudadDestino,
-//     puntosFidelizacion: puntosFidelizacion
-//   };
-
-//   rutas.push(ruta);
-
-//   mostrarRutas();
-//   limpiarFormulario();
-// }
-
-// // Función para mostrar las rutas en la tabla
-// function mostrarRutas() {
-//   var tablaHTML = "";
-//   for (var i = 0; i < rutas.length; i++) {
-//     tablaHTML += `
-//       <tr>
-//         <td>${rutas[i].id}</td>
-//         <td>${rutas[i].nombre}</td>
-//         <td>$${rutas[i].valorTiquete}</td>
-//         <td>${rutas[i].ciudadOrigen}</td>
-//         <td>${rutas[i].ciudadDestino}</td>
-//         <td>${rutas[i].puntosFidelizacion}</td>
-//         <td><button onclick="eliminarRuta(${i})">Eliminar</button></td>
-//       </tr>
-//     `;
-//   }
-//   tablaRutas.innerHTML = tablaHTML;
-// }
 
 
-
-// // Función para eliminar una ruta
-// function eliminarRuta(index) {
-//   rutas.splice(index, 1);
-//   mostrarRutas();
-// }
-
-// // Evento al enviar el formulario de ruta
-// formRuta.addEventListener("submit", function(event) {
-//   event.preventDefault();
-//   generarRuta();
-// });
