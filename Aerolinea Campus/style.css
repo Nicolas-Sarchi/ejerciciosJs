@@ -1,5 +1,34 @@
 
-  
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(45deg,rgb(107, 179, 255),rgb(53, 150, 254),rgb(0, 106, 255),black);
+  background-size: 400% 400%;
+  position: relative;
+  animation: cambiar 29s ease-in infinite;
+}
+h1{
+  font-size: 4rem;
+  letter-spacing: 2px;
+  border: solid 3px #fff;
+  border-radius: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 2rem 3rem;
+}
+
+@keyframes cambiar{
+  0%{background-position: 0 50%;}
+  50%{background-position: 100% 50%;}
+  100%{background-position: 0 50%;}
+}
 
   .c-item {
     height: 480px;

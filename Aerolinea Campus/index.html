@@ -9,6 +9,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -42,55 +43,10 @@
 
    
     <div id="home" class="container mt-5 text-center w-100">
-      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-    
-        <div class="carousel-inner" style="margin-top: 8.5rem;">
-          <div class="carousel-item active c-item">
-            <img src="pexels-athena-3417667.jpg" class="d-block w-100 c-img" alt="Slide 1">
-            <div class="carousel-caption top-0 mt-4">
-              <p class="mt-5 fs-3 text-uppercase">Discover the hidden world</p>
-              <h1 class="display-1 fw-bolder text-capitalize">The Aurora Tours</h1>
-              <button class="btn btn-primary px-4 py-2 fs-5 mt-5">Book a tour</button>
-            </div>
-          </div>
-          <div class="carousel-item c-item">
-            <img src="./pexels-pixabay-46148 (1).jpg" class="d-block w-100 c-img" alt="Slide 2">
-            <div class="carousel-caption top-0 mt-4">
-              <p class="text-uppercase fs-3 mt-5">The season has arrived</p>
-              <p class="display-1 fw-bolder text-capitalize">3 available tours</p>
-              <button class="btn btn-primary px-4 py-2 fs-5 mt-5" data-bs-toggle="modal"
-                data-bs-target="#booking-modal">Book a tour</button>
-            </div>
-          </div>
-          <div class="carousel-item c-item">
-            <img src="./pexels-pixabay-46148 (1).jpg" class="d-block w-100 c-img" alt="Slide 3">
-  
-            <div class="carousel-caption top-0 mt-4">
-              <p class="text-uppercase fs-3 mt-5">Destination activities</p>
-              <p class="display-1 fw-bolder text-capitalize">Go glacier hiking</p>
-              <button class="btn btn-primary px-4 py-2 fs-5 mt-5" data-bs-toggle="modal"
-                data-bs-target="#booking-modal">Book a tour</button>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+      
 
 
       <h1>Welcome to Aerolinea Campus</h1>
-      <p>Here you can manage clients, routes, and ticket purchases for our airline.</p>
       
   </div>
 
@@ -163,7 +119,7 @@
             
                 </tbody>
             </table>
-            <p id="noResults" style="display:none">No results found.</p>
+            <p id="noResults" style="display:none">No hay coincidencias!</p>
         </div>
       </div>
     </div>
@@ -221,9 +177,29 @@
       </div>
   </div>
 
-  <div id="tiquetes" class="container mt-5 text-center mb-10" style="display:none">
-
-</div>
+  <div id="tiquetes" class="comprar-tiquetes container mt-5 text-center">
+    <h2>Comprar Tiquetes</h2>
+    <div class="form-group">
+      <label for="clienteSelect">Seleccione el cliente:</label>
+      <select class="form-control" id="clienteSelect">
+        <!-- Opciones de cliente se agregarán dinámicamente -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="rutaSelect">Seleccione la ruta:</label>
+      <select class="form-control" id="rutaSelect">
+        <!-- Opciones de ruta se agregarán dinámicamente -->
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="calcularTotal();">Calcular total</button>
+    <div id="resultado" style="display:none">
+      <h3>Total de la compra: <span id="totalCompra"></span></h3>
+    </div>
+  </div>
+  
+  
+  
+  
     <script src="aerolinea.js"></script>
 </body>
 </html>

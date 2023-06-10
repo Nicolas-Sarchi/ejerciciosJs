@@ -153,7 +153,6 @@ function filterTable() {
       );
     });
   
-    // Update the table with the filtered results
     mostrarClientes(filteredClientes);
   
     const noResults = document.querySelector('#noResults');
@@ -163,13 +162,7 @@ function filterTable() {
       noResults.style.display = 'none';
     }
   }
-  
- 
-  
-  
- 
-  
-  
+
 
 formCliente.addEventListener('submit', agregarCliente);
 mostrarClientes();
@@ -262,4 +255,61 @@ formRuta.addEventListener('submit', agregarRuta);
 
 
 
-
+function cargarClientes() {
+    // Carga los clientes en el select clienteSelect
+    // Esto asume que tienes una función que devuelve la lista de clientes
+    const clientes = obtenerClientes();
+    const clienteSelect = document.getElementById("clienteSelect");
+    clientes.forEach(cliente => {
+      const option = document.createElement("option");
+      option.value = cliente.id;
+      option.textContent = cliente.nombre + " " + cliente.apellido;
+      clienteSelect.appendChild(option);
+    });
+  }
+  
+  
+  function cargarRutas() {
+    // Carga las rutas en el select rutaSelect
+    // Esto asume que tienes una función que devuelve la lista de rutas
+    const rutas = obtenerRutas();
+    const rutaSelect = document.getElementById("rutaSelect");
+    rutas.forEach(ruta => {
+      const option = document.createElement("option");
+      option.value = ruta.valor;
+      option.textContent = ruta.nombre;
+      rutaSelect.appendChild(option);
+    });
+  }
+  
+  
+  function calcularTotal() {
+    const rutaSelect = document.getElementById("rutaSelect");
+    const valorRuta = parseFloat(rutaSelect.value);
+    const iva = 0.16;
+    const tasaAeroportuaria = 0.04;
+  
+  
+    const totalIva = valorRuta * iva;
+    const totalTasaAeroportuaria = (valorRuta + totalIva) * tasaAeroportuaria;
+    const totalCompra = valorRuta + totalIva + totalTasaAeroportuaria;
+  
+  
+    const totalCompraElement = document.getElementById("totalCompra");
+    totalCompraElement.textContent = totalCompra.toFixed(2);
+  
+  
+    const resultadoElement = document.getElementById("resultado");
+    resultadoElement.style.display = "block";
+  }
+  
+  
+  // Llama a las funciones cargarClientes y cargarRutas cuando la página se cargue
+  window.addEventListener("DOMContentLoaded", () => {
+    cargarClientes();
+    cargarRutas();
+  });
+  
+  
+  
+  
