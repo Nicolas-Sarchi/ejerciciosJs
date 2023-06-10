@@ -255,61 +255,49 @@ formRuta.addEventListener('submit', agregarRuta);
 
 
 
-function cargarClientes() {
-    // Carga los clientes en el select clienteSelect
-    // Esto asume que tienes una función que devuelve la lista de clientes
-    const clientes = obtenerClientes();
-    const clienteSelect = document.getElementById("clienteSelect");
-    clientes.forEach(cliente => {
-      const option = document.createElement("option");
-      option.value = cliente.id;
-      option.textContent = cliente.nombre + " " + cliente.apellido;
-      clienteSelect.appendChild(option);
-    });
-  }
-  
-  
-  function cargarRutas() {
-    // Carga las rutas en el select rutaSelect
-    // Esto asume que tienes una función que devuelve la lista de rutas
-    const rutas = obtenerRutas();
-    const rutaSelect = document.getElementById("rutaSelect");
-    rutas.forEach(ruta => {
-      const option = document.createElement("option");
-      option.value = ruta.valor;
-      option.textContent = ruta.nombre;
-      rutaSelect.appendChild(option);
-    });
-  }
-  
-  
-  function calcularTotal() {
-    const rutaSelect = document.getElementById("rutaSelect");
-    const valorRuta = parseFloat(rutaSelect.value);
-    const iva = 0.16;
-    const tasaAeroportuaria = 0.04;
-  
-  
-    const totalIva = valorRuta * iva;
-    const totalTasaAeroportuaria = (valorRuta + totalIva) * tasaAeroportuaria;
-    const totalCompra = valorRuta + totalIva + totalTasaAeroportuaria;
-  
-  
-    const totalCompraElement = document.getElementById("totalCompra");
-    totalCompraElement.textContent = totalCompra.toFixed(2);
-  
-  
-    const resultadoElement = document.getElementById("resultado");
-    resultadoElement.style.display = "block";
-  }
-  
-  
-  // Llama a las funciones cargarClientes y cargarRutas cuando la página se cargue
-  window.addEventListener("DOMContentLoaded", () => {
-    cargarClientes();
-    cargarRutas();
+const IVA = 0.19; // Porcentaje de IVA
+const tasaAeroportuaria = 10000; // Tasa aeroportuaria en la moneda local
+
+function comprarTiquete() {
+  const clienteId = document.getElementById("cliente").value;
+  const rutaId = document.getElementById("ruta").value;
+
+  const cliente = clientes.find(c => c.identificacion === clienteId);
+  const ruta = rutasAereas.find(r => r.id === rutaId);
+
+  const valorIVA = ruta.precio * IVA;
+  const valorTotal = ruta.precio + valorIVA + tasaAeroportuaria;
+
+  // Actualizar puntos de fidelización
+  const puntosGanados = calcularPuntosFidelizacion(valorTotal);
+  cliente.puntosFidelizacion += puntosGanados;
+
+  // Mostrar resumen de la compra
+  mostrarResumenCompra(cliente, ruta, valorIVA, valorTotal, puntosGanados);
+
+  // Actualizar tabla de fidelización
+  listarClientesFidelizacion();
+}
+
+function calcularPuntosFidelizacion(valorTotal) {
+  const factorPuntos = 0.1; // Factor para convertir valor total a puntos
+  return Math.floor(valorTotal * factorPuntos);
+}
+
+function mostrarResumenCompra(cliente, ruta, valorIVA, valorTotal, puntosGanados) {
+  const resumenCompra = document.getElementById("resumen-compra");
+  resumenCompra.innerHTML = `
+    <h3>Resumen de la compra</h3>
+    <p>Cliente: ${cliente.nombres}</p>
+    <p>Ruta aérea: ${ruta.origen} - ${ruta.destino}</p>
+    <p>Valor IVA: ${valorIVA.toFixed(2)}</p>
+    <p>Tasa aeroportuaria: ${tasaAeroportuaria.toFixed(2)}</p>
+    <p>Valor total: ${valorTotal.toFixed(2)}</p>
+    <p>Puntos de fidelización ganados: ${puntosGanados}</p>
+  `;
+}
+document.getElementById("form-compra").addEventListener("submit", (event) => {
+    event.preventDefault();
+    comprarTiquete();
   });
-  
-  
-  
   

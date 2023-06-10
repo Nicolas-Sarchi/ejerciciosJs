@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Clientes</h1>
+        <form id="client-form">
+            <div class="form-group">
+                <label for="identification">Número de identificación:</label>
+                <input type="text" id="identification" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Nombres:</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Apellidos:</label>
+                <input type="text" id="lastname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Fecha de nacimiento:</label>
+                <input type="date" id="birthdate" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nacionalidad:</label>
+                <input type="text" id="nationality" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+        </form>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Número de identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Correo electrónico</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Nacionalidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="client-list"></tbody>
+        </table>
+        <hr>
+        <h1>Gestión de Rutas Aéreas</h1>
+        <form id="route-form">
+            <div class="form-group">
+                <label for="route-name">Nombre de la ruta:</label>
+                <input type="text" id="route-name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="ticket-value">Valor Tiquete:</label>
+                <input type="text" id="ticket-value" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="origin">Ciudad origen:</label>
+                <input type="text" id="origin" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Ciudad destino:</label>
+                <input type="text" id="destination" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="loyalty-points">Puntos para fidelización:</label>
+                <input type="number" id="loyalty-points" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Ruta</button>
+        </form>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de la ruta</th>
+                    <th>Valor Tiquete</th>
+                    <th>Ciudad origen</th>
+                    <th>Ciudad destino</th>
+                    <th>Puntos para fidelización</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="route-list"></tbody>
+        </table>
+        <hr>
+        <h1>Compra de Tiquetes</h1>
+        <form id="purchase-form">
+            <div class="form-group">
+                <label for="client-select">Cliente:</label>
+                <select id="client-select" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+                <label for="route-select">Ruta de viaje:</label>
+                <select id="route-select" class="form-control" required></select>
+            </div>
+            <button type="submit" class="btn btn-primary">Realizar Compra</button>
+        </form>
+        <br>
+        <div id="purchase-summary" style="display: none;">
+            <h3>Resumen de la Compra:</h3>
+            <p>Cliente: <span id="summary-client"></span></p>
+            <p>Ruta: <span id="summary-route"></span></p>
+            <p>Valor del Tiquete: $<span id="summary-ticket-value"></span></p>
+            <p>IVA (16%): $<span id="summary-iva"></span></p>
+            <p>Tasa Aeroportuaria (4%): $<span id="summary-airport-fee"></span></p>
+            <p>Puntos para Fidelización: <span id="summary-loyalty-points"></span></p>
+        </div>
+        <hr>
+        <h1>Módulo de Fidelización</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Puntos de Fidelización</th>
+                </tr>
+            </thead>
+            <tbody id="loyalty-list"></tbody>
+        </table>
+    </div>
+
+    <script>
+        // Array para almacenar los datos de los clientes
+        const clients = [];
+
+        // Array para almacenar los datos de las rutas
+        const routes = [];
+
+        // Función para agregar un cliente
+        function addClient(event) {
+            event.preventDefault();
+
+            const identification = document.getElementById('identification').value;
+            const name = document.getElementById('name').value;
+            const lastname = document.getElementById('lastname').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const nationality = document.getElementById('nationality').value;
+
+            const client = {
+                identification,
+                name,
+                lastname,
+                phone,
+                email,
+                birthdate,
+                nationality
+            };
+
+            clients.push(client);
+
+            renderClientTable();
+            updateClientSelect();
+            document.getElementById('client-form').reset();
+        }
+
+        // Función para eliminar un cliente
+        function deleteClient(identification) {
+            const index = clients.findIndex(client => client.identification === identification);
+
+            if (index !== -1) {
+                clients.splice(index, 1);
+                renderClientTable();
+                updateClientSelect();
+            }
+        }
+
+        // Función para renderizar la tabla de clientes
+        function renderClientTable() {
+            const clientList = document.getElementById('client-list');
+            clientList.innerHTML = '';
+
+            clients.forEach(client => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${client.identification}</td>
+                    <td>${client.name}</td>
+                    <td>${client.lastname}</td>
+                    <td>${client.phone}</td>
+                    <td>${client.email}</td>
+                    <td>${client.birthdate}</td>
+                    <td>${client.nationality}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteClient('${client.identification}')">Eliminar</button>
+                    </td>
+                `;
+
+                clientList.appendChild(row);
+            });
+        }
+
+        // Función para actualizar el select de clientes en el formulario de compra
+        function updateClientSelect() {
+            const clientSelect = document.getElementById('client-select');
+            clientSelect.innerHTML = '';
+
+            clients.forEach(client => {
+                const option = document.createElement('option');
+                option.value = client.identification;
+                option.innerText = `${client.name} ${client.lastname}`;
+                clientSelect.appendChild(option);
+            });
+        }
+
+        // Función para agregar una ruta
+        function addRoute(event) {
+            event.preventDefault();
+
+            const routeName = document.getElementById('route-name').value;
+            const ticketValue = document.getElementById('ticket-value').value;
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            const loyaltyPoints = document.getElementById('loyalty-points').value;
+
+            const route = {
+                id: generateID(),
+                routeName,
+                ticketValue,
+                origin,
+                destination,
+                loyaltyPoints
+            };
+
+            routes.push(route);
+
+            renderRouteTable();
+            updateRouteSelect();
+            document.getElementById('route-form').reset();
+        }
+
+        // Función para eliminar una ruta
+        function deleteRoute(id) {
+            const index = routes.findIndex(route => route.id === id);
+
+            if (index !== -1) {
+                routes.splice(index, 1);
+                renderRouteTable();
+                updateRouteSelect();
+            }
+        }
+
+        // Función para renderizar la tabla de rutas
+        function renderRouteTable() {
+            const routeList = document.getElementById('route-list');
+            routeList.innerHTML = '';
+
+            routes.forEach(route => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${route.id}</td>
+                    <td>${route.routeName}</td>
+                    <td>${route.ticketValue}</td>
+                    <td>${route.origin}</td>
+                    <td>${route.destination}</td>
+                    <td>${route.loyaltyPoints}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteRoute('${route.id}')">Eliminar</button>
+                    </td>
+                `;
+
+                routeList.appendChild(row);
+            });
+        }
+
+        // Función para actualizar el select de rutas en el formulario de compra
+        function updateRouteSelect() {
+            const routeSelect = document.getElementById('route-select');
+            routeSelect.innerHTML = '';
+
+            routes.forEach(route => {
+                const option = document.createElement('option');
+                option.value = route.id;
+                option.innerText = route.routeName;
+                routeSelect.appendChild(option);
+            });
+        }
+
+        // Función para generar un ID único
+        function generateID() {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Función para calcular la compra de tiquetes
+        function calculatePurchase(event) {
+            event.preventDefault();
+
+            const clientId = document.getElementById('client-select').value;
+            const routeId = document.getElementById('route-select').value;
+
+            const client = clients.find(client => client.identification === clientId);
+            const route = routes.find(route => route.id === routeId);
+
+            const ticketValue = parseFloat(route.ticketValue);
+            const iva = ticketValue * 0.16;
+            const airportFee = ticketValue * 0.04;
+            const loyaltyPoints = parseInt(route.loyaltyPoints);
+
+            const summaryClient = document.getElementById('summary-client');
+            const summaryRoute = document.getElementById('summary-route');
+            const summaryTicketValue = document.getElementById('summary-ticket-value');
+            const summaryIva = document.getElementById('summary-iva');
+            const summaryAirportFee = document.getElementById('summary-airport-fee');
+            const summaryLoyaltyPoints = document.getElementById('summary-loyalty-points');
+
+            summaryClient.textContent = `${client.name} ${client.lastname}`;
+            summaryRoute.textContent = route.routeName;
+            summaryTicketValue.textContent = ticketValue.toFixed(2);
+            summaryIva.textContent = iva.toFixed(2);
+            summaryAirportFee.textContent = airportFee.toFixed(2);
+            summaryLoyaltyPoints.textContent = loyaltyPoints;
+
+            document.getElementById('purchase-summary').style.display = 'block';
+
+            // Actualizar los puntos de fidelización del cliente
+            client.loyaltyPoints = client.loyaltyPoints ? client.loyaltyPoints + loyaltyPoints : loyaltyPoints;
+            renderLoyaltyTable();
+        }
+
+        // Función para renderizar la tabla de fidelización
+        function renderLoyaltyTable() {
+            const loyaltyList = document.getElementById('loyalty-list');
+            loyaltyList.innerHTML = '';
+
+            clients.forEach(client => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${client.name} ${client.lastname}</td>
+                    <td>${client.loyaltyPoints ? client.loyaltyPoints : 0}</td>
+                `;
+
+                loyaltyList.appendChild(row);
+            });
+        }
+
+        // Agregar eventos a los formularios
+        document.getElementById('client-form').addEventListener('submit', addClient);
+        document.getElementById('route-form').addEventListener('submit', addRoute);
+        document.getElementById('purchase-form').addEventListener('submit', calculatePurchase);
+
+        // Renderizar las tablas iniciales
+        renderClientTable();
+        renderRouteTable();
+        renderLoyaltyTable();
+    </script>
+</body>
+</html>

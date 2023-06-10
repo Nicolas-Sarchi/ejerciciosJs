@@ -124,9 +124,6 @@
       </div>
     </div>
 
-
-
-
     <div  id="rutas" class="gestion-rutas container mt-5 text-center mb-10">
       <form class="row g-3 needs-validation" id="agregar-ruta">
           <div class="col-md-4">
@@ -177,25 +174,34 @@
       </div>
   </div>
 
-  <div id="tiquetes" class="comprar-tiquetes container mt-5 text-center">
-    <h2>Comprar Tiquetes</h2>
-    <div class="form-group">
-      <label for="clienteSelect">Seleccione el cliente:</label>
-      <select class="form-control" id="clienteSelect">
-        <!-- Opciones de cliente se agregarán dinámicamente -->
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="rutaSelect">Seleccione la ruta:</label>
-      <select class="form-control" id="rutaSelect">
-        <!-- Opciones de ruta se agregarán dinámicamente -->
-      </select>
-    </div>
-    <button class="btn btn-primary" onclick="calcularTotal();">Calcular total</button>
-    <div id="resultado" style="display:none">
-      <h3>Total de la compra: <span id="totalCompra"></span></h3>
+  <div id="tiquetes" class="container mt-5 text-center mb-5">
+    <section id="compra-tiquetes">
+      <h2>Compra de tiquetes</h2>
+      <form id="form-compra">
+        <div class="mb-3">
+          <label for="cliente" class="form-label">Cliente</label>
+          <select class="form-select" id="cliente" required>
+            <!-- Aquí se listarán los clientes -->
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="ruta" class="form-label">Ruta aérea</label>
+          <select class="form-select" id="ruta" required>
+            <!-- Aquí se listarán las rutas aéreas -->
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Comprar</button>
+      </form>
+      
+      <div id="resumen-compra">
+        <!-- Aquí se mostrará el resumen de la compra -->
+      </div>
+    </section>
+    
+
     </div>
   </div>
+  
   
   
   
