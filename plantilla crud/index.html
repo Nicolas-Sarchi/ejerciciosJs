@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>CRUD App</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CRUD App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Add Item</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Rest of the content -->
+  <!-- Inside the <body> tag, after the navbar -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="pexels-pixabay-46148 (1).jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="pexels-pixabay-46148h (1).jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="pexels-pixabay-46148 (1).jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <form action="#" method="post">
+    <div class="mb-3">
+      <label for="itemName" class="form-label">Item Name</label>
+      <input type="text" class="form-control" id="itemName" placeholder="Enter item name">
+    </div>
+    <div class="mb-3">
+      <label for="itemDescription" class="form-label">Item Description</label>
+      <textarea class="form-control" id="itemDescription" rows="3" placeholder="Enter item description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <form action="#" method="post">
+    <div class="mb-3">
+      <label for="editItemName" class="form-label">Item Name</label>
+      <input type="text" class="form-control" id="editItemName" value="Current item name">
+    </div>
+    <div class="mb-3">
+      <label for="editItemDescription" class="form-label">Item Description</label>
+      <textarea class="form-control" id="editItemDescription" rows="3">Current item description</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+      
+</body>
+</html>

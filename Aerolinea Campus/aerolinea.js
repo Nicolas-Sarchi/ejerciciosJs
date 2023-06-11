@@ -1,6 +1,6 @@
 
 function showSection(sectionId) {
-    const sections = ['home', 'clientes', 'rutas', 'tiquetes'];
+    const sections = ['home', 'clientes', 'rutas', 'tiquetes', 'fidelizacion'];
     sections.forEach((id) => {
         const section = document.getElementById(id);
         if (id === sectionId) {
@@ -16,6 +16,8 @@ document.querySelector("a[href='#Home']").addEventListener("click", () => showSe
 document.querySelector("a[href='#Clientes']").addEventListener("click", () => showSection("clientes"));
 document.querySelector("a[href='#Rutas']").addEventListener("click", () => showSection("rutas"));
 document.querySelector("a[href='#Tiquetes']").addEventListener("click", () => showSection("tiquetes"));
+document.querySelector("a[href='#Puntos']").addEventListener("click", () => showSection("fidelizacion"));
+
 
 // Show the home section by default
 showSection("home");
@@ -54,6 +56,8 @@ function agregarCliente(event) {
     } else {
         clientes.push(cliente);
     }
+    updateClientSelect();
+    renderLoyaltyTable();
 
     formCliente.reset();
 
@@ -74,8 +78,8 @@ function mostrarClientes(clientesToShow = clientes) {
             <td>${cliente.email}</td>
             <td>${cliente.fechaNacimiento}</td>
             <td>${cliente.nacionalidad}</td>
-            <td><button class="btn btn-danger btn-sm btn-eliminar" data-id="${cliente.id}">Eliminar</button></td>
-            <td><button class="btn btn-warning btn-sm btn-editar" data-id="${cliente.id}">Editar</button></td>
+            <td><button class="btn btn-danger btn-sm btn-eliminar" data-id="${cliente.id}"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+            <td><button class="btn btn-warning btn-sm btn-editar" data-id="${cliente.id}"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>
         `;
 
         const btnEliminar = nuevaFila.querySelector('.btn-eliminar');
@@ -122,6 +126,9 @@ function editarCliente(clienteEditado) {
     }
 
     mostrarClientes();
+    updateClientSelect();
+    renderLoyaltyTable()
+
 }
 
 function eliminarCliente(identificacion) {
@@ -132,41 +139,48 @@ function eliminarCliente(identificacion) {
     if (index !== -1) {
         clientes.splice(index, 1);
         mostrarClientes();
+        updateClientSelect();
+        renderLoyaltyTable()
+
     }
 }
 
 
-function filterTable() {
-    // Get the user's input value
-    const searchValue = document.querySelector('#search').value.toLowerCase();
-  
-    // Filter the `clientes` array based on the user's input
-    const filteredClientes = clientes.filter((cliente) => {
-      return (
-        cliente.id.toString().includes(searchValue) ||
-        cliente.nombre.toLowerCase().includes(searchValue) ||
-        cliente.apellido.toLowerCase().includes(searchValue) ||
-        cliente.telefono.toLowerCase().includes(searchValue) ||
-        cliente.email.toLowerCase().includes(searchValue) ||
-        cliente.fechaNacimiento.toLowerCase().includes(searchValue) ||
-        cliente.nacionalidad.toLowerCase().includes(searchValue)
-      );
-    });
-  
-    mostrarClientes(filteredClientes);
-  
-    const noResults = document.querySelector('#noResults');
-    if (filteredClientes.length === 0) {
-      noResults.style.display = 'block';
-    } else {
-      noResults.style.display = 'none';
-    }
-  }
 
+
+  function filterTable() {
+    const searchTerm = document.getElementById("search").value.toLowerCase();
+    const filteredClients = clientes.filter(client => {
+        const fullName = `${client.nombre} ${client.apellido}`.toLowerCase();
+        return client.id.toString().includes(searchTerm) ||
+            fullName.includes(searchTerm) ||
+            client.nombre.toLowerCase().includes(searchTerm) ||
+            client.apellido.toLowerCase().includes(searchTerm);
+    });
+    const noResults = document.querySelector('#noResults');
+   if (filteredClients.length === 0) {
+     noResults.style.display = 'block';
+   } else {
+     noResults.style.display = 'none';
+   }
+
+    mostrarClientes(filteredClients);
+}
 
 formCliente.addEventListener('submit', agregarCliente);
 mostrarClientes();
 
+function updateClientSelect() {
+    const clientSelect = document.getElementById('client-select');
+    clientSelect.innerHTML = '';
+
+    clientes.forEach(client => {
+        const option = document.createElement('option');
+        option.value = client.id;
+        option.innerText = `${client.nombre} ${client.apellido}`;
+        clientSelect.appendChild(option);
+    });
+}
 
 
 
@@ -197,7 +211,7 @@ function agregarRuta(event) {
     rutas.push(ruta);
 
     formRuta.reset();
-
+    updateRouteSelect()
     mostrarRutas();
 }
 
@@ -205,6 +219,18 @@ function generarIdRuta(ciudadOrigen, ciudadDestino) {
     const idCiudadOrigen = ciudadOrigen.substring(0, 3).toUpperCase();
     const idCiudadDestino = ciudadDestino.substring(0, 3).toUpperCase();
     return `${idCiudadOrigen}-${idCiudadDestino}`;
+}
+
+function updateRouteSelect() {
+    const routeSelect = document.getElementById('route-select');
+    routeSelect.innerHTML = '';
+
+    rutas.forEach(route => {
+        const option = document.createElement('option');
+        option.value = route.id;
+        option.innerText = `${route.id}  - "${route.nombreRuta}"`;
+        routeSelect.appendChild(option);
+    });
 }
 
 function mostrarRutas() {
@@ -245,9 +271,11 @@ function eliminarRuta(id) {
     if (indice !== -1) {
       rutas.splice(indice, 1);
       mostrarRutas();
+      updateRouteSelect()
     }
   }
-  
+
+
 
 
 formRuta.addEventListener('submit', agregarRuta);   
@@ -255,49 +283,61 @@ formRuta.addEventListener('submit', agregarRuta);
 
 
 
-const IVA = 0.19; // Porcentaje de IVA
-const tasaAeroportuaria = 10000; // Tasa aeroportuaria en la moneda local
-
-function comprarTiquete() {
-  const clienteId = document.getElementById("cliente").value;
-  const rutaId = document.getElementById("ruta").value;
-
-  const cliente = clientes.find(c => c.identificacion === clienteId);
-  const ruta = rutasAereas.find(r => r.id === rutaId);
-
-  const valorIVA = ruta.precio * IVA;
-  const valorTotal = ruta.precio + valorIVA + tasaAeroportuaria;
-
-  // Actualizar puntos de fidelización
-  const puntosGanados = calcularPuntosFidelizacion(valorTotal);
-  cliente.puntosFidelizacion += puntosGanados;
-
-  // Mostrar resumen de la compra
-  mostrarResumenCompra(cliente, ruta, valorIVA, valorTotal, puntosGanados);
-
-  // Actualizar tabla de fidelización
-  listarClientesFidelizacion();
-}
-
-function calcularPuntosFidelizacion(valorTotal) {
-  const factorPuntos = 0.1; // Factor para convertir valor total a puntos
-  return Math.floor(valorTotal * factorPuntos);
-}
-
-function mostrarResumenCompra(cliente, ruta, valorIVA, valorTotal, puntosGanados) {
-  const resumenCompra = document.getElementById("resumen-compra");
-  resumenCompra.innerHTML = `
-    <h3>Resumen de la compra</h3>
-    <p>Cliente: ${cliente.nombres}</p>
-    <p>Ruta aérea: ${ruta.origen} - ${ruta.destino}</p>
-    <p>Valor IVA: ${valorIVA.toFixed(2)}</p>
-    <p>Tasa aeroportuaria: ${tasaAeroportuaria.toFixed(2)}</p>
-    <p>Valor total: ${valorTotal.toFixed(2)}</p>
-    <p>Puntos de fidelización ganados: ${puntosGanados}</p>
-  `;
-}
-document.getElementById("form-compra").addEventListener("submit", (event) => {
+function calculatePurchase(event) {
     event.preventDefault();
-    comprarTiquete();
-  });
+
+    const clientId = document.getElementById('client-select').value;
+    const routeId = document.getElementById('route-select').value;
+
+    const client = clientes.find(client => client.id === clientId);
+    const route = rutas.find(route => route.id === routeId);
+
+    const ticketValue = parseFloat(route.valorTiquete);
+    const iva = ticketValue * 0.16;
+    const airportFee = ticketValue * 0.04;
+    const loyaltyPoints = parseInt(route.puntosFidelizacion);
+    const total = ticketValue + iva + airportFee
+
+    const summaryClient = document.getElementById('summary-client');
+    const summaryRoute = document.getElementById('summary-route');
+    const summaryTicketValue = document.getElementById('summary-ticket-value');
+    const summaryIva = document.getElementById('summary-iva');
+    const summaryAirportFee = document.getElementById('summary-airport-fee');
+    const summaryLoyaltyPoints = document.getElementById('summary-loyalty-points');
+    const summaryTotal = document.getElementById('total-compra');
+
+
+    summaryClient.textContent = `${client.nombre} ${client.apellido}`;
+    summaryRoute.textContent = route.nombreRuta;
+    summaryTicketValue.textContent = ticketValue.toFixed(2);
+    summaryIva.textContent = iva.toFixed(2);
+    summaryAirportFee.textContent = airportFee.toFixed(2);
+    summaryLoyaltyPoints.textContent = loyaltyPoints;
+    summaryTotal.textContent = total.toFixed(2)
+
+    document.getElementById('purchase-summary').style.display = 'block';
+
+    // Actualizar los puntos de fidelización del cliente
+    client.puntosFidelizacion = client.puntosFidelizacion ? client.puntosFidelizacion + loyaltyPoints : loyaltyPoints;
+    renderLoyaltyTable();
+}
+
+function renderLoyaltyTable() {
+    const loyaltyList = document.getElementById('loyalty-list');
+    loyaltyList.innerHTML = '';
+
+    clientes.forEach(client => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${client.nombre} ${client.apellido}</td>
+            <td>${client.puntosFidelizacion ? client.puntosFidelizacion : 0}</td>
+        `;
+
+        loyaltyList.appendChild(row);
+    });
+}
+
+document.getElementById('purchase-form').addEventListener('submit', calculatePurchase);
+
   

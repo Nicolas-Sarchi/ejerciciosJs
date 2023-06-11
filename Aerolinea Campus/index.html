@@ -9,8 +9,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-primary text-white">
@@ -37,16 +36,20 @@
                     <a class="nav-link active text-white" aria-current="page" href="#Tiquetes">Comprar Tiquetes</a>
                     
                 </div>
+                <div class="navbar-nav">
+                  <a class="nav-link active text-white" aria-current="page" href="#Puntos">Campus Points</a>
+                  
+              </div>
             </div>
         </div>
     </nav>
 
    
-    <div id="home" class="container mt-5 text-center w-100">
+    <div id="home" class="container mt-5 text-center w-100 align-content-center">
       
 
 
-      <h1>Welcome to Aerolinea Campus</h1>
+      <h1 class="mt-5">Welcome to Aerolinea Campus</h1>
       
   </div>
 
@@ -59,17 +62,16 @@
           </div>
           <div class="col-md-4">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre"  required>
+            <input type="text" class="form-control" id="nombre"  pattern="[A-Za-z ]+"  title="Por favor ingrese solo letras" required>
             
           </div>
           <div class="col-md-4">
             <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido"  required>
-            
+            <input type="text" class="form-control" id="apellido" pattern="[A-Za-z ]+"  title="Por favor ingrese solo letras" required>
           </div>
           <div class="col-md-6">
-            <label for="telefono" class="form-label">Telefono</label>
-            <input type="tel" class="form-control" id="telefono" required>
+            <label for="telefono" class="form-label">Telefono </label>
+            <input type="tel" class="form-control" id="telefono" pattern="[0-9]+" title="Por favor ingrese solo números" required>
             
           </div>
           <div class="col-md-6">
@@ -79,22 +81,23 @@
           </div>
           <div class="col-md-6">
             <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-            <input type="date" class="form-control" id="fechaNacimiento" required>
+            <input type="date" class="form-control" id="fechaNacimiento"  max="2030-12-31" min="1909-11-03" required>
             
           </div>
           <div class="col-md-6">
             <label for="nacionalidad" class="form-label">Nacionalidad</label>
-            <input type="text" class="form-control" id="nacionalidad"  required>
+            <input type="text" class="form-control" id="nacionalidad"  pattern="[A-Za-zñÑ
+             ]+"  title="Por favor ingrese solo letras"  required>
           </div>
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Agregar</button>
+            <button class="btn btn-outline-light fw-bolder border-2" type="submit">Agregar</button>
           </div>
         </form>
 
         <div class="container mt5 pb-5 pt-5">
           <div class="row">
             <div class="offset-md-3 col-md-6"></div>
-          <input type="text" class="form-control" id="search" placeholder="Search..." oninput="filterTable()" >
+          <input type="text" class="form-control" id="search" placeholder="Buscar..." oninput="filterTable()" >
           </div>
         
         
@@ -147,8 +150,8 @@
               <label for="puntosFidelizacion" class="form-label">Puntos para Fidelización</label>
               <input type="number" class="form-control" id="puntosFidelizacion" required>
           </div>
-          <div class="col-12">
-              <button class="btn btn-primary" type="submit">Agregar</button>
+          <div class="col-12 mt-5">
+              <button class="btn btn-outline-light" type="submit">Agregar</button>
           </div>
       </form>
       <div class="table-responsive mt-5">
@@ -175,37 +178,48 @@
   </div>
 
   <div id="tiquetes" class="container mt-5 text-center mb-5">
-    <section id="compra-tiquetes">
-      <h2>Compra de tiquetes</h2>
-      <form id="form-compra">
-        <div class="mb-3">
-          <label for="cliente" class="form-label">Cliente</label>
-          <select class="form-select" id="cliente" required>
-            <!-- Aquí se listarán los clientes -->
-          </select>
+    <h2>Compra de Tiquetes</h2>
+        <form id="purchase-form">
+            <div class="form-group">
+                <label for="client-select">Cliente:</label>
+                <select id="client-select" class="form-control" required></select>
+            </div>
+            <div class="form-group">
+                <label for="route-select">Ruta de viaje:</label>
+                <select id="route-select" class="form-control" required></select>
+            </div>
+            <button type="submit" class="btn btn-outline-light mt-5">Realizar Compra</button>
+        </form>
+        <br>
+        <div id="purchase-summary" class="text-center" style="display: none;">
+            <h3>Resumen de la Compra:</h3>
+            <p>Cliente: <span id="summary-client"></span></p>
+            <p>Ruta: <span id="summary-route"></span></p>
+            <p>Valor del Tiquete: $<span id="summary-ticket-value"></span></p>
+            <p>IVA (16%): $<span id="summary-iva"></span></p>
+            <p>Tasa Aeroportuaria (4%): $<span id="summary-airport-fee"></span></p>
+            <p>Puntos para Fidelización: <span id="summary-loyalty-points"></span></p>
+            <p class="fw-bold fs-2">Valor Total: <span class="fw-bold" id="total-compra"></span></p>
+
+            
         </div>
-        <div class="mb-3">
-          <label for="ruta" class="form-label">Ruta aérea</label>
-          <select class="form-select" id="ruta" required>
-            <!-- Aquí se listarán las rutas aéreas -->
-          </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Comprar</button>
-      </form>
-      
-      <div id="resumen-compra">
-        <!-- Aquí se mostrará el resumen de la compra -->
-      </div>
-    </section>
-    
+        
 
     </div>
-  </div>
-  
-  
-  
-  
-  
+ 
+<div id="fidelizacion" class="container mt-5 text-center mb-5">
+  <h3>Módulo de Fidelización</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Puntos de Fidelización</th>
+                </tr>
+            </thead>
+            <tbody id="loyalty-list"></tbody>
+        </table>
+
+</div>
     <script src="aerolinea.js"></script>
 </body>
 </html>

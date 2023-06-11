@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestión de Clientes</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestión de Clientes</h1>
+    <h2>Registrar Cliente</h2>
+    <form id="formCliente">
+      <div class="form-group">
+        <label for="idInput">Número de Identificación:</label>
+        <input type="text" class="form-control" id="idInput" required>
+      </div>
+      <div class="form-group">
+        <label for="nameInput">Nombres:</label>
+        <input type="text" class="form-control" id="nameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="lastnameInput">Apellidos:</label>
+        <input type="text" class="form-control" id="lastnameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="phoneInput">Teléfono:</label>
+        <input type="tel" class="form-control" id="phoneInput" required>
+      </div>
+      <div class="form-group">
+        <label for="emailInput">Correo Electrónico:</label>
+        <input type="email" class="form-control" id="emailInput" required>
+      </div>
+      <div class="form-group">
+        <label for="birthdateInput">Fecha de Nacimiento:</label>
+        <input type="date" class="form-control" id="birthdateInput" required>
+      </div>
+      <div class="form-group">
+        <label for="nationalityInput">Nacionalidad:</label>
+        <input type="text" class="form-control" id="nationalityInput" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+
+    <h2>Clientes Registrados</h2>
+    <input type="text" class="form-control" id="search-input" placeholder="Buscar cliente...">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Número de Identificación</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Teléfono</th>
+          <th>Correo Electrónico</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Nacionalidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaClientes">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Variables globales
+    let clientes = [];
+
+    // Obtener elementos del formulario
+    const formCliente = document.getElementById("formCliente");
+    const idInput = document.getElementById("idInput");
+    const nameInput = document.getElementById("nameInput");
+    const lastnameInput = document.getElementById("lastnameInput");
+    const phoneInput = document.getElementById("phoneInput");
+    const emailInput = document.getElementById("emailInput");
+    const birthdateInput = document.getElementById("birthdateInput");
+    const nationalityInput = document.getElementById("nationalityInput");
+
+    // Función para agregar un nuevo cliente
+   // Variables globales para almacenar el ID del cliente en edición y el índice de la fila en la tabla
+let clienteEnEdicionId = null;
+let clienteEnEdicionRowIndex = -1;
+
+// Función para editar los datos de un cliente
+function editarCliente(id) {
+  const cliente = clientes.find(cliente => cliente.id === id);
+
+  if (cliente) {
+    clienteEnEdicionId = cliente.id;
+    clienteEnEdicionRowIndex = clientes.indexOf(cliente);
+
+    idInput.value = cliente.id;
+    nameInput.value = cliente.nombre;
+    lastnameInput.value = cliente.apellido;
+    phoneInput.value = cliente.telefono;
+    emailInput.value = cliente.correo;
+    birthdateInput.value = cliente.fechaNacimiento;
+    nationalityInput.value = cliente.nacionalidad;
+  }
+}
+
+// Función para agregar un cliente o actualizar los datos de un cliente existente
+function agregarCliente(event) {
+  event.preventDefault();
+
+  const cliente = {
+    id: idInput.value,
+    nombre: nameInput.value,
+    apellido: lastnameInput.value,
+    telefono: phoneInput.value,
+    correo: emailInput.value,
+    fechaNacimiento: birthdateInput.value,
+    nacionalidad: nationalityInput.value
+  };
+
+  if (clienteEnEdicionId) {
+    // Actualizar los datos del cliente existente
+    clientes[clienteEnEdicionRowIndex] = cliente;
+
+    // Restablecer las variables de edición
+    clienteEnEdicionId = null;
+    clienteEnEdicionRowIndex = -1;
+  } else {
+    // Agregar un nuevo cliente
+    clientes.push(cliente);
+  }
+
+  // Actualizar la tabla de clientes
+  renderClientes();
+
+  // Restablecer el formulario
+  formCliente.reset();
+}
+
+  const rowIndex = clientes.findIndex(cliente => cliente.id === id);
+
+  if (rowIndex !== -1) {
+    const cliente = clientes[rowIndex];
+
+    cliente.nombre = nameInput.value;
+    cliente.apellido = lastnameInput.value;
+    cliente.telefono = phoneInput.value;
+    cliente.correo = emailInput.value;
+    cliente.fechaNacimiento = birthdateInput.value;
+    cliente.nacionalidad = nationalityInput.value;
+
+    // Actualizar la tabla de clientes
+    renderClientes();
+  }
+
+
+// Función para eliminar un cliente
+function eliminarCliente(id) {
+  clientes = clientes.filter(cliente => cliente.id !== id);
+  renderClientes();
+}
+
+
+    // Función para renderizar la tabla de clientes
+    function renderClientes() {
+      const tablaClientes = document.getElementById("tablaClientes");
+      tablaClientes.innerHTML = "";
+
+      clientes.forEach(cliente => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${cliente.id}</td>
+          <td>${cliente.nombre}</td>
+          <td>${cliente.apellido}</td>
+          <td>${cliente.telefono}</td>
+          <td>${cliente.correo}</td>
+          <td>${cliente.fechaNacimiento}</td>
+          <td>${cliente.nacionalidad}</td>
+          <td>
+            <button class="btn btn-primary" onclick="editarCliente('${cliente.id}')">Editar</button>
+            <button class="btn btn-danger" onclick="eliminarCliente('${cliente.id}')">Eliminar</button>
+          </td>
+        `;
+
+        tablaClientes.appendChild(row);
+      });
+    }
+
+    // Función para buscar clientes
+    function buscarClientes() {
+      const searchTerm = document.getElementById("search-input").value.toLowerCase();
+      const clientesFiltrados = clientes.filter(cliente => {
+        const nombreCompleto = `${cliente.nombre} ${cliente.apellido}`.toLowerCase();
+        return cliente.id.toString().includes(searchTerm) ||
+               nombreCompleto.includes(searchTerm) ||
+               cliente.nombre.toLowerCase().includes(searchTerm) ||
+               cliente.apellido.toLowerCase().includes(searchTerm);
+      });
+
+      renderClientes(clientesFiltrados);
+    }
+
+    // Manejadores de eventos
+    formCliente.addEventListener("submit", agregarCliente);
+    searchInput.addEventListener("input", buscarClientes);
+
+    // Inicializar la tabla de clientes
+    renderClientes();
+  </script>
+</body>
+</html>

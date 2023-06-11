@@ -11,7 +11,7 @@ $(document).ready(function() {
         var user = findUserByEmail(email);
         if (user && user.password === password) {
             // Mostrar mensaje de bienvenida con el nombre del usuario
-            alert("¡Bienvenido, " + user.name + "!");
+            alert("¡Bienvenido, " + user.email + "!");
 
             // Aquí puedes redirigir a la página de inicio de sesión exitosa, por ejemplo.
         } else {
