@@ -1,0 +1,8 @@
+// Gestión de productos en una tienda:
+// Requerimientos:
+
+// Desarrolla una interfaz de usuario que permita registrar, modificar, listar y eliminar productos en una tienda.
+// Cada producto debe tener los siguientes campos: nombre, descripción, precio, cantidad en stock y categoría.
+// Agrega un buscador que permita encontrar productos por nombre o categoría.
+// Implementa la opción de actualizar la cantidad en stock de un producto al momento de realizar una venta.
+// Agrega una funcionalidad para calcular el valor total de los productos en stock en cada categoría.

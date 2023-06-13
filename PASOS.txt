@@ -1,0 +1,39 @@
+Analiza los requisitos funcionales:
+
+Lee detenidamente el enunciado y comprende los diferentes elementos y secciones requeridos.
+Identifica las operaciones CRUD necesarias para cada sección y las entidades involucradas.
+Toma nota de los datos que necesitarás manejar y las relaciones entre ellos.
+Diseña la estructura de datos:
+
+Define la estructura de datos necesaria para almacenar la información relevante.
+Determina los campos o propiedades necesarios para cada entidad.
+Decide cómo relacionar las entidades si es necesario.
+
+
+Crea la interfaz de usuario:
+
+Diseña una interfaz intuitiva y amigable para el usuario.
+Crea las páginas o secciones necesarias para cada operación CRUD.
+Utiliza elementos de entrada, tablas y otros componentes visuales para mostrar y capturar datos.
+
+
+Implementa las operaciones CRUD:
+
+Crea funciones o métodos para cada una de las operaciones CRUD.
+En la función de creación, captura los datos ingresados por el usuario y crea un nuevo objeto o agrega los datos a la estructura de datos existente.
+En la función de lectura, muestra los datos almacenados en la estructura de datos correspondiente en la interfaz de usuario.
+En la función de actualización, permite al usuario editar los datos existentes y guarda los cambios en la estructura de datos.
+En la función de eliminación, elimina el objeto o los datos seleccionados de la estructura de datos.
+Agrega funcionalidades adicionales:
+
+Considera qué otras funcionalidades podrían mejorar la experiencia del usuario o cumplir con requisitos adicionales.
+Implementa estas funcionalidades adicionales utilizando las estructuras de datos existentes y las funciones apropiadas.
+Realiza pruebas y depuración:
+
+Ejecuta el programa y realiza pruebas exhaustivas para verificar que todas las funcionalidades estén funcionando correctamente.
+Identifica y corrige posibles errores o problemas en la implementación.
+Asegúrate de que la interfaz de usuario sea fácil de usar y que los datos se manipulen correctamente.
+Mejora la apariencia y la experiencia de usuario (opcional):
+
+Si lo deseas, mejora la apariencia visual de la interfaz de usuario utilizando CSS o bibliotecas de diseño como Bootstrap.
+Considera agregar animaciones, mensajes de confirmación y otros elementos interactivos para mejorar la experiencia de usuario.
