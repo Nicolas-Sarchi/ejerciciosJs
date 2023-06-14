@@ -1,106 +1,142 @@
-// Gestión de contactos en una libreta:
-// Requerimientos:
-
-// Desarrolla una interfaz de usuario para gestionar una libreta de contactos.
-// Cada contacto debe tener los siguientes campos: nombre, apellido, teléfono, dirección de correo electrónico y categoría (amigo, familiar, trabajo, etc.).
-// Permite agregar, editar, listar y eliminar contactos.
-// Implementa la opción de buscar contactos por nombre o categoría.
-// Agrega la funcionalidad de ordenar los contactos alfabéticamente por nombre o apellido.
-
 const contactos = [];
-contadorId = 1;
+let contadorId = 1;
 
-const formAgragarContacto = document.getElementById('agregarForm'),
-    tablaContactos = document.getElementById('tabla-contactos');
+const formAgregarContacto = document.getElementById('agregarForm');
+const tablaContactos = document.getElementById('tabla-contactos');
+const buscarContacto = document.getElementById('buscarContacto');
+
 let contactoEditando = null;
 
+function agregarContacto(event) {
+    event.preventDefault();
 
-function agregarContacto() {
- 
-    
-    const nombre = document.getElementById('nombre').value,
-    apellido = document.getElementById('apellido').value,
-    telefono = document.getElementById('telefono').value,
-    email = document.getElementById('email').value,
-    categoria = document.getElementById('categoria').value;
+    const nombre = document.getElementById('nombre').value;
+    const apellido = document.getElementById('apellido').value;
+    const telefono = document.getElementById('telefono').value;
+    const email = document.getElementById('email').value;
+    const categoria = document.getElementById('categoria').value;
 
-    const id = contadorId;
-    const contacto = {
-        id,
-        nombre,
-        apellido,
-        telefono,
-        email,
-        categoria
-    };
     if (contactoEditando) {
-        editarContacto(contacto);
+        editarContacto(contactoEditando, nombre, apellido, telefono, email, categoria);
         contactoEditando = null;
     } else {
+        const id = contadorId++;
+        const contacto = {
+            id,
+            nombre,
+            apellido,
+            telefono,
+            email,
+            categoria
+        };
         contactos.push(contacto);
     }
 
-    formAgragarContacto.reset()
-    contadorId++
-    
+    formAgregarContacto.reset();
+    mostrarContactos();
 }
 
-function mostrarContactos(contactosAMostrar = contactos){
-    tablaContactos.innerHTML = '';
-
-    contactos.forEach(contacto => {
-        const nuevaFila = document.createElement('tr');
-        nuevaFila.innerHTML = `
-        <td>${contacto.nombre}</td>
-        <td>${contacto.apellido}</td>
-        <td>${contacto.telefono}</td>
-        <td>${contacto.email}</td>
-        <td>${contacto.categoria}</td>
-        <td><button class="btn btn-danger" onclick="borrarContacto(${contacto.id})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-        <td><button class="btn btn-warning" onclick="editarContacto(${contacto.id})">Editar</button></td>
-    `
-    tablaContactos.appendChild(nuevaFila);
-    })
-    
-}
-
-formAgragarContacto.addEventListener("submit", function (event) {
-    event.preventDefault();
-    agregarContacto()
-    mostrarContactos()
-})
-
-function borrarContacto(contactoId){
+function borrarContacto(contactoId) {
     const index = contactos.findIndex(contacto => contacto.id === contactoId);
 
     if (index !== -1) {
         contactos.splice(index, 1);
-        mostrarContactos()
-        actualizarSelectContactos();
+        mostrarContactos();
     }
 }
 
-function filtrarcontactos() {
+function editarContacto(contacto, nombre, apellido, telefono, email, categoria) {
+    contacto.nombre = nombre;
+    contacto.apellido = apellido;
+    contacto.telefono = telefono;
+    contacto.email = email;
+    contacto.categoria = categoria;
+    mostrarContactos();
+}
+
+function filtrarContactos() {
     const textoBusqueda = buscarContacto.value.toLowerCase();
-  
-    const contactosFiltrados = contactos.filter((producto) => {
-        const nombreProducto = producto.nombreProducto.toLowerCase();
-        const categoria = producto.categoria.toLowerCase();
-  
-        return (
-            nombreProducto.includes(textoBusqueda) ||
-            categoria.includes(textoBusqueda)
-        );
+    const contactosFiltrados = contactos.filter(contacto => {
+        const nombreContacto = contacto.nombre.toLowerCase();
+        const categoria = contacto.categoria.toLowerCase();
+        return nombreContacto.includes(textoBusqueda) || categoria.includes(textoBusqueda);
+    });
+
+    mostrarContactos(contactosFiltrados);
+}
+
+function mostrarContactos(contactosAMostrar = contactos) {
+    tablaContactos.innerHTML = '';
+
+    if (contactosAMostrar.length === 0) {
+        const noResultsRow = document.createElement('tr');
+        noResultsRow.innerHTML = `<td colspan="7">No hay coincidencias</td>`;
+        tablaContactos.appendChild(noResultsRow);
+        return;
+    }
+
+    contactosAMostrar.forEach(contacto => {
+        const nuevaFila = document.createElement('tr');
+        nuevaFila.innerHTML = `
+            <td>${contacto.nombre}</td>
+            <td>${contacto.apellido}</td>
+            <td>${contacto.telefono}</td>
+            <td>${contacto.email}</td>
+            <td>${contacto.categoria}</td>
+            <td><button class="btn btn-danger" onclick="borrarContacto(${contacto.id})"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+            <td><button class="btn btn-warning" onclick="editarContactoForm(${contacto.id})">Editar</button></td>
+        `;
+        tablaContactos.appendChild(nuevaFila);
     });
 }
 
+function editarContactoForm(contactoId) {
+    const contacto = contactos.find(contacto => contacto.id === contactoId);
 
-const buscarContacto = document.getElementById("buscarProducto");
-buscarProducto.addEventListener("input", filtrarContactos);
+    if (contacto) {
+        document.getElementById('nombre').value = contacto.nombre;
+        document.getElementById('apellido').value = contacto.apellido;
+        document.getElementById('telefono').value = contacto.telefono;
+        document.getElementById('email').value = contacto.email;
+        document.getElementById('categoria').value = contacto.categoria;
 
+        contactoEditando = contacto;
+    }
+}
 
+formAgregarContacto.addEventListener('submit', agregarContacto);
+buscarContacto.addEventListener('input', filtrarContactos);
 
-
-
-
-
+function ordenarPorNombre() {
+    contactos.sort((a, b) => {
+      const nombreA = a.nombre.toUpperCase();
+      const nombreB = b.nombre.toUpperCase();
+      if (nombreA < nombreB) {
+        return -1;
+      }
+      if (nombreA > nombreB) {
+        return 1;
+      }
+      return 0;
+    });
+  
+    mostrarContactos();
+  }
+  
+  function ordenarPorApellido() {
+    contactos.sort((a, b) => {
+      const apellidoA = a.apellido.toUpperCase();
+      const apellidoB = b.apellido.toUpperCase();
+      if (apellidoA < apellidoB) {
+        return -1;
+      }
+      if (apellidoA > apellidoB) {
+        return 1;
+      }
+      return 0;
+    });
+  
+    mostrarContactos();
+  }
+  window.addEventListener("DOMContentLoaded", mostrarContactos);
+  
