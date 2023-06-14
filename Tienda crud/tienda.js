@@ -56,15 +56,7 @@ function mostrarProductos(productosAMostrar = productos){
 
 formAddProducto.addEventListener("submit", addProducto)
 
-function borrarProducto(productoId){
-    const index = productos.findIndex(producto => producto.id === productoId);
 
-    if (index !== -1) {
-        productos.splice(index, 1);
-        mostrarProductos()
-        actualizarSelectProductos();
-    }
-}
 
 function editarProducto(productoId) {
   const producto = productos.find((p) => p.id === productoId);
@@ -80,6 +72,8 @@ function editarProducto(productoId) {
     formAddProducto.addEventListener("submit", (event) => {
       event.preventDefault();
       actualizarProducto(productoId);
+      mostrarProductos()
+      
     });
   }
 }

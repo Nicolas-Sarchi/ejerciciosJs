@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bootstrap Site</title>
+  <title>Libreta de Contactos</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
 
 
     
-    <div class="container mt-5">
+    <div class="container mt-5 agregar-contacto">
         <div class="contact__wrapper shadow-lg mt-n9">
             <div class="row no-gutters">
                 <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2 text-center align-content-center">
@@ -25,54 +25,93 @@
                 </div>
         
                 <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-                    <form action="#" class="contact-form form-validate" novalidate="novalidate">
+                    <form  id="agregarForm">
                         <div class="row">
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
-                                    <label class="required-field" for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Wendy">
+                                    <label class="required-field" for="firstName">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre"  placeholder="Wendy" required>
                                 </div>
                             </div>
         
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Appleseed">
+                                    <input type="text" class="form-control" id="apellido" placeholder="Appleseed" required>
                                 </div>
                             </div>
         
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label class="required-field" for="email">Email</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="wendy.apple@seed.com">
+                                    <input type="text" class="form-control" id="email"  placeholder="wendy.apple@seed.com" required>
                                 </div>
                             </div>
         
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(021)-454-545">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono"  placeholder="(021)-454-545" required>
                                 </div>
                             </div>
         
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
-                                    <label class="required-field" for="message">How can we help?</label>
-                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Hi there, I would like to....."></textarea>
+                                    <label for="phone">Categoría</label>
+                                    <input type="tel" class="form-control" id="categoria"  placeholder="(amigo, familiar, trabajo, etc.)." required>
                                 </div>
                             </div>
         
-                            <div class="col-sm-12 mb-3">
-                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <div class="col-sm-12 mb-3 text-center">
+                                <button type="submit" name="submit" class="btn btn-primary">Agregar</button>
                             </div>
         
                         </div>
                     </form>
                 </div>
-                <!-- End Contact Form Wrapper -->
+               
         
             </div>
         </div>
     </div>
-</body>
+
+
+    <div class="container mt-5 agregar-contacto">
+        <div class="contact__wrapper shadow-lg mt-n9 p-2">
+             <div class="col-md-3 ">
+        <input class="form-control" id="buscarContacto" type="text" placeholder="Buscar por nombre o categoría">
+      </div>
+            
+            <div class="table-responsive mt-5">
+                <table class="table table-striped
+                table-hover	
+                table-borderless
+                table-light
+                align-middle" >
+                <thead>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Telefono</th>
+                  <th>Email</th>
+                  <th>Categoría</th>
+                  <th></th>
+                  <th></th>
+                </thead>
+                     <tbody class="table-group-divider" id="tabla-contactos">
+          
+
+                    </tbody>
+                </table>
+                <p id="noResults" style="display:none">No hay coincidencias!</p>
+            </div>
+          </div>
+        </div>
+        
+                
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+        
+            </div>
+        </div>
+    </div>
+    <script src="contactos.js"></script>
 </html>

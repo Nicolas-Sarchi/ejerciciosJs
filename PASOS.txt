@@ -28,6 +28,7 @@ Agrega funcionalidades adicionales:
 
 Considera qué otras funcionalidades podrían mejorar la experiencia del usuario o cumplir con requisitos adicionales.
 Implementa estas funcionalidades adicionales utilizando las estructuras de datos existentes y las funciones apropiadas.
+
 Realiza pruebas y depuración:
 
 Ejecuta el programa y realiza pruebas exhaustivas para verificar que todas las funcionalidades estén funcionando correctamente.

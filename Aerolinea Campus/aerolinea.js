@@ -158,9 +158,9 @@ function eliminarCliente(identificacion) {
             client.apellido.toLowerCase().includes(searchTerm);
     });
     const noResults = document.querySelector('#noResults');
-   if (filteredClients.length === 0) {
+   if (filteredClients.length === 0) {mt-5
      noResults.style.display = 'block';
-   } else {
+   } else {mt-5
      noResults.style.display = 'none';
    }
 
