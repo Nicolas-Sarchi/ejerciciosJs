@@ -65,9 +65,12 @@ function mostrarQuiz(){
 
     administrarPreguntas.preguntas.forEach(pregunta => {
         const nuevaPregunta = document.createElement('div')
-        nuevaPregunta.classList.add('col-12','mt-5')
+        nuevaPregunta.classList.add('card','mt-5')
         nuevaPregunta.innerHTML = `
-                <p>${pregunta.enunciado}</p>
+                    <div class="card-body">
+
+                 <h5 class="card-title fs-6">${pregunta.enunciado}</h5>
+                 <div class="card-text">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">
@@ -91,13 +94,20 @@ function mostrarQuiz(){
                 <label class="form-check-label" for="flexRadioDefault2">
                 ${pregunta.d}
                 </label>
-              </div>`
+              </div>
+            </div>
+            </div>
+              `
               areaQuiz.appendChild(nuevaPregunta);
 
     })
 
 
 }
+
+   
+    
+    
 
 
 
