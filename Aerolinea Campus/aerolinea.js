@@ -113,6 +113,7 @@ function editarClienteFormulario(clienteId) {
         document.querySelector('#nacionalidad').value = cliente.nacionalidad;
 
         clienteEditando = cliente;
+        
     }
 }
 
