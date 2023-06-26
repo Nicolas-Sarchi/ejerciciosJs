@@ -1,31 +1,28 @@
-class Calculator {
-    constructor() {
-      this.resultElement = document.getElementById('result');
-      this.appendToResult = this.appendToResult.bind(this);
-      this.deleteLastCharacter = this.deleteLastCharacter.bind(this);
-      this.clearResult = this.clearResult.bind(this);
-      this.calculateResult = this.calculateResult.bind(this);
-    }
 
-    appendToResult(value) {
-      this.resultElement.value += value;
-    }
-
-    deleteLastCharacter() {
-      this.resultElement.value = this.resultElement.value.slice(0, -1);
-    }
-
-    clearResult() {
-      this.resultElement.value = '';
-    }
-
-    calculateResult() {
-      try {
-        this.resultElement.value = eval(this.resultElement.value);
-      } catch (error) {
-        this.resultElement.value = 'Error';
-      }
-    }
+class Calculadora {
+  constructor() {
+    this.resultadoElemento = document.getElementById('resultado');
   }
 
-  const calculator = new Calculator();
+  agregarAlResultado(valor) {
+    this.resultadoElemento.value += valor;
+  }
+
+  borrarUltimoCaracter() {
+    this.resultadoElemento.value = this.resultadoElemento.value.slice(0, -1);
+  }
+
+  limpiarResultado() {
+    this.resultadoElemento.value = '';
+  }
+
+  calcularResultado() {
+    try {
+      this.resultadoElemento.value = eval(this.resultadoElemento.value);
+    } catch (error) {
+      this.resultadoElemento.value = 'Error';
+    }
+  }
+}
+
+const calculadora = new Calculadora();

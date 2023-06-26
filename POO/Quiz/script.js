@@ -16,13 +16,14 @@ class QuestionManager {
   }
 
   agregarPregunta(pregunta) {
-    if (this.preguntaEditando) {
+    if (this.preguntaEditando) {  
       const indice = this.preguntas.indexOf(this.preguntaEditando);
       this.preguntas[indice] = pregunta;
       this.preguntaEditando = null;
     } else {
       this.preguntas.push(pregunta);
     }
+    console.log(this.preguntas);
   }
 
   getPreguntas() {
@@ -42,6 +43,20 @@ class QuestionManager {
     rtaCInput.value = this.preguntaEditando.c;
     rtaDInput.value = this.preguntaEditando.d;
     correctaInput.value = this.preguntaEditando.correcta;
+  }
+
+validarRespuestas(pregunta,indice){
+      
+  const radios = document.getElementsByName(`flexRadioDefault${indice}`);
+  const selected = Array.from(radios).find(radio => radio.checked);
+  const a = selected.value;
+  if (a === pregunta.correcta){
+    alert("correcto")
+  }else{
+    alert('incorrecto')
+  }
+
+
   }
 }
 
@@ -63,7 +78,18 @@ formularioPregunta.addEventListener('submit', (e) => {
   const rtaB = rtaBInput.value;
   const rtaC = rtaCInput.value;
   const rtaD = rtaDInput.value;
-  const correcta = correctaInput.value;
+  if (correctaInput.value === 'a'){
+  correcta = rtaA;
+  } else if (correctaInput.value === 'b') {
+    correcta = rtaB;
+
+  }else if (correctaInput.value === 'c'){
+    correcta = rtaC;
+
+  }else{
+    correcta = rtaD;
+
+  }
 
   const pregunta = new Pregunta(enunciado, rtaA, rtaB, rtaC, rtaD, correcta);
   administrarPreguntas.agregarPregunta(pregunta);
@@ -82,7 +108,7 @@ function mostrarQuiz() {
     nuevaPregunta.classList.add('card', 'mt-5', "border", 'border-primary', 'border-3');
     nuevaPregunta.innerHTML = `
       <div class="card-body">
-        <h5 class="card-title fs-4 space-between">${pregunta.enunciado}</h5>
+        <h5 class="card-title fs-4 ">${pregunta.enunciado}</h5>
         <a href="#formulario" class="btn" onclick="administrarPreguntas.editarPregunta(${indice})">
           <i style="cursor:pointer" class="fa-solid fa-pen-to-square"></i>
         </a>
@@ -91,27 +117,33 @@ function mostrarQuiz() {
         </button>
         <div class="card-text">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label fs-5" for="flexRadioDefault1">${pregunta.a}</label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault${indice}" id="flexRadioDefault1">
+            <label class="form-check-label" fs-5" for="flexRadioDefault1">${pregunta.a}</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-            <label class="form-check-label fs-5" for="flexRadioDefault2">${pregunta.b}</label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault${indice}" id="flexRadioDefault2">
+            <label class="form-check-label" fs-5" for="flexRadioDefault2">${pregunta.b}</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-            <label class="form-check-label fs-5" for="flexRadioDefault3">${pregunta.c}</label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault${indice}" id="flexRadioDefault3">
+            <label class="form-check-label" fs-5" for="flexRadioDefault3">${pregunta.c}</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-            <label class="form-check-label fs-5" for="flexRadioDefault4">${pregunta.d}</label>
+            <input class="form-check-input" type="radio" name="flexRadioDefault${indice}" id="flexRadioDefault4">
+            <label class="form-check-label" fs-5" for="flexRadioDefault4">${pregunta.d}</label>
           </div>
         </div>
       </div>
+      
     `;
-
+    btnEnviar = document.createElement('a');
+  btnEnviar.innerHTML = `<button class ="btn btn-outline-primary col-12 mt-5" type= "button" id ="submit" onclick = "administrarPreguntas.validarRespuestas(${pregunta,indice})" >Enviar</button>`
+  areaQuiz.appendChild(btnEnviar)
     areaQuiz.appendChild(nuevaPregunta);
+    
   });
+    
+  
 }
 
 function eliminarPregunta(indice) {
@@ -119,5 +151,24 @@ function eliminarPregunta(indice) {
   mostrarQuiz();
 }
 
-mostrarQuiz();
+
+function showSection(sectionId) {
+  const sections = ['formulario', 'preguntas'];
+  sections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (id === sectionId) {
+          section.style.display = 'block';
+      } else {
+          section.style.display = 'none';
+      }
+  });
+}
+
+
+document.querySelector("a[href='#formulario']").addEventListener("click", () => showSection("formulario"));
+document.querySelector("a[href='#preguntas']").addEventListener("click", () => showSection("preguntas"));
+
+
+
+showSection("formulario");
 
