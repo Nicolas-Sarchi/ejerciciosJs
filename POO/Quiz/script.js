@@ -45,19 +45,67 @@ class QuestionManager {
     correctaInput.value = this.preguntaEditando.correcta;
   }
 
-validarRespuestas(pregunta,indice){
-      
-  const radios = document.getElementsByName(`flexRadioDefault${indice}`);
-  const selected = Array.from(radios).find(radio => radio.checked);
-  const a = selected.value;
-  if (a === pregunta.correcta){
-    alert("correcto")
-  }else{
-    alert('incorrecto')
-  }
+//add validation to my code
+validarRespuestas() {
+  const respuestasUsuario = [];
+  let respuestasCorrectas = 0;
+
+  // Obtener las respuestas seleccionadas por el usuario y validarlas
+  this.preguntas.forEach((pregunta, indice) => {
+    const opciones = document.getElementsByName(`flexRadioDefault${indice}`);
+    let respuestaSeleccionada = '';
+    let respuestaCorrecta = '';
+    opciones.forEach((opcion) => {
+      if (opcion.checked) {
+        respuestaSeleccionada = opcion.nextElementSibling.innerText;
+      }
+      opcion.disabled = true; // Desactivar el input tipo radio
+      if (pregunta.correcta === opcion.nextElementSibling.innerText) {
+        respuestaCorrecta = opcion.nextElementSibling.innerText;
+      }
+    });
+    respuestasUsuario.push(respuestaSeleccionada);
+
+    if (respuestaSeleccionada === pregunta.correcta) {
+      respuestasCorrectas++;
+      opciones.forEach((opcion) => {
+        if (opcion.checked) {
+          opcion.parentElement.style.backgroundColor = 'rgba(0, 255, 0, 0.2)'; // Respuesta del usuario correcta (verde)
+        }
+      });
+    } else {
+      opciones.forEach((opcion) => {
+        if (opcion.checked) {
+          opcion.parentElement.style.backgroundColor = 'rgba(255, 0, 0, 0.2)'; // Respuesta del usuario incorrecta (rojo)
+        }
+        if (pregunta.correcta === opcion.nextElementSibling.innerText) {
+          opcion.parentElement.style.backgroundColor = 'rgba(0, 255, 0, 0.2)'; // Respuesta correcta (verde)
+        }
+      });
+    }
+  });
+
+  // Calcular el porcentaje de aciertos
+  const porcentajeAciertos = (respuestasCorrectas / this.preguntas.length) * 100;
+
+  // Mostrar el resumen de aciertos en el modal
+  const resultadoModalBody = document.getElementById('resultadoModalBody');
+  resultadoModalBody.innerHTML = `
+    <h3>Resumen del Quiz</h3>
+    <p>Respuestas correctas: ${respuestasCorrectas}/${this.preguntas.length}</p>
+    <p>Puntaje: ${porcentajeAciertos.toFixed(2)}%</p>
+  `;
+
+  // Abrir el modal
+  const resultadoModal = new bootstrap.Modal(document.getElementById('resultadoModal'));
+  resultadoModal.show();
+}
 
 
-  }
+
+
+
+
 }
 
 const administrarPreguntas = new QuestionManager();
@@ -69,6 +117,7 @@ const rtaCInput = document.getElementById('rtaC');
 const rtaDInput = document.getElementById('rtaD');
 const correctaInput = document.getElementById('correcta');
 const formularioPregunta = document.getElementById('formulario');
+
 
 formularioPregunta.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -105,7 +154,7 @@ function mostrarQuiz() {
 
   administrarPreguntas.preguntas.forEach((pregunta, indice) => {
     const nuevaPregunta = document.createElement('div');
-    nuevaPregunta.classList.add('card', 'mt-5', "border", 'border-primary', 'border-3');
+    nuevaPregunta.classList.add('card', 'mt-5', "border", 'border-black', 'border-2');
     nuevaPregunta.innerHTML = `
       <div class="card-body">
         <h5 class="card-title fs-4 ">${pregunta.enunciado}</h5>
@@ -136,14 +185,12 @@ function mostrarQuiz() {
       </div>
       
     `;
-    btnEnviar = document.createElement('a');
-  btnEnviar.innerHTML = `<button class ="btn btn-outline-primary col-12 mt-5" type= "button" id ="submit" onclick = "administrarPreguntas.validarRespuestas(${pregunta,indice})" >Enviar</button>`
-  areaQuiz.appendChild(btnEnviar)
+   
     areaQuiz.appendChild(nuevaPregunta);
     
   });
     
-  
+
 }
 
 function eliminarPregunta(indice) {
