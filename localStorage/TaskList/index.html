@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de tareas con Local Storage</title>
+</head>
+<body>
+  <h1>Lista de tareas</h1>
+  <input type="text" id="inputTask" placeholder="Nueva tarea">
+  <button onclick="agregarTarea()">Agregar tarea</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    // Obtener las tareas del Local Storage al cargar la página
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function mostrarTareas() {
+      var taskList = document.getElementById('taskList');
+      taskList.innerHTML = '';
+
+      for (var i = 0; i < tasks.length; i++) {
+        var taskItem = document.createElement('li');
+        taskItem.textContent = tasks[i];
+        taskList.appendChild(taskItem);
+      }
+    }
+
+    function agregarTarea() {
+      var inputTask = document.getElementById('inputTask');
+      var newTask = inputTask.value;
+
+      if (newTask !== '') {
+        tasks.push(newTask);
+        inputTask.value = '';
+        mostrarTareas();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+    }
+
+    mostrarTareas();
+  </script>
+</body>
+</html>

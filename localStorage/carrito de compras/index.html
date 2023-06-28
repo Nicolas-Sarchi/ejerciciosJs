@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carrito de compras con Almacenamiento Local</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container mt-5 p-5">
+    <h1>Carrito de compras</h1>
+
+  <form id="agregar" class="mt-5 row">
+    
+  <input type="text" class="form-control col-md-6 mt-5" id="inputDescripcion" placeholder="Nombre del producto" required>
+  <input type="number" class="form-control col-md-6 mt-5" id="inputProducto" placeholder="Precio del producto" required>
+ 
+  <button class="btn btn-primary mt-5" >Agregar al carrito</button>
+
+</form>
+<div class="container row">
+<button class ="btn btn-danger mt-5" onclick="miCarrito.vaciarCarrito()">Vaciar carrito</button>
+</div>
+</div>
+
+<div class="container">
+  <ul id="elementosCarrito" class="list-group p-3"></ul>
+</div>
+<script src="script.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

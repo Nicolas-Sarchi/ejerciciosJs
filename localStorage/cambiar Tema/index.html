@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tema personalizado con Local Storage</title>
+  <style id="customTheme"></style>
+</head>
+<body>
+  <h1>Aplicación con tema personalizado</h1>
+  <button onclick="cambiarTema('light')">Tema claro</button>
+  <button onclick="cambiarTema('dark')">Tema oscuro</button>
+  <button onclick="toggleTema()">Cambiar tema</button>
+
+  <script>
+    function cambiarTema(miTema) {
+      customTheme = document.getElementById('customTheme');
+
+      if (miTema === 'light') {
+        customTheme.textContent = `
+          body {
+            background-color: #f4f4f4;
+            color: #333;
+          }`
+        ;
+      } else if (miTema === 'dark') {
+        customTheme.textContent = `
+          body {
+            background-color: #333;
+            color: #f4f4f4;
+          }`
+        ;
+      }
+
+      localStorage.setItem('theme', miTema);
+    }
+
+    function toggleTema() {
+     tema = localStorage.getItem('theme');
+
+      if (tema === 'light') {
+        cambiarTema('dark');
+      } else {
+        cambiarTema('light');
+      }
+    }
+
+     tema = localStorage.getItem('theme');
+
+    if (tema) {
+      cambiarTema(tema);
+    }
+  </script>
+</body>
+</html>
