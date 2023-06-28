@@ -45,12 +45,10 @@ class QuestionManager {
     correctaInput.value = this.preguntaEditando.correcta;
   }
 
-//add validation to my code
 validarRespuestas() {
   const respuestasUsuario = [];
   let respuestasCorrectas = 0;
 
-  // Obtener las respuestas seleccionadas por el usuario y validarlas
   this.preguntas.forEach((pregunta, indice) => {
     const opciones = document.getElementsByName(`flexRadioDefault${indice}`);
     let respuestaSeleccionada = '';
@@ -59,7 +57,7 @@ validarRespuestas() {
       if (opcion.checked) {
         respuestaSeleccionada = opcion.nextElementSibling.innerText;
       }
-      opcion.disabled = true; // Desactivar el input tipo radio
+      opcion.disabled = true; 
       if (pregunta.correcta === opcion.nextElementSibling.innerText) {
         respuestaCorrecta = opcion.nextElementSibling.innerText;
       }
@@ -144,6 +142,7 @@ formularioPregunta.addEventListener('submit', (e) => {
   administrarPreguntas.agregarPregunta(pregunta);
 
   mostrarQuiz();
+  mostrarListaPreguntas()
   formularioPregunta.reset();
 });
 
@@ -158,12 +157,7 @@ function mostrarQuiz() {
     nuevaPregunta.innerHTML = `
       <div class="card-body">
         <h5 class="card-title fs-4 ">${pregunta.enunciado}</h5>
-        <a href="#formulario" class="btn" onclick="administrarPreguntas.editarPregunta(${indice})">
-          <i style="cursor:pointer" class="fa-solid fa-pen-to-square"></i>
-        </a>
-        <button class="btn" onclick="eliminarPregunta(${indice})">
-          <i style="cursor:pointer; color: #e01b24;" class="fa-solid fa-trash"></i>
-        </button>
+       
         <div class="card-text">
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault${indice}" id="flexRadioDefault1">
@@ -196,9 +190,29 @@ function mostrarQuiz() {
 function eliminarPregunta(indice) {
   administrarPreguntas.eliminarPregunta(indice);
   mostrarQuiz();
+  mostrarListaPreguntas()
 }
 
+const cuerpoTabla = document.querySelector("#tabla-preguntas");
+function mostrarListaPreguntas() {
+  cuerpoTabla.innerHTML = "";
+  administrarPreguntas.preguntas.forEach((pregunta, indice) => {
+    newRow = document.createElement("tr");
+    newRow.innerHTML = `
+    <th scope="row">${pregunta.enunciado}</th>
+    <td>${pregunta.a}</td>
+    <td>${pregunta.b}</td>
+    <td>${pregunta.c}</td>
+    <td>${pregunta.d}</td>
+    <td>${pregunta.correcta}</td>
+    <td><a href="#formulario" class="btn" onclick="administrarPreguntas.editarPregunta(${indice})">
+    <i style="cursor:pointer" class="fa-solid fa-pen-to-square"></i></a></td>
+    <td><button class="btn" onclick="eliminarPregunta(${indice})"><i style="cursor:pointer; color: #e01b24;" class="fa-solid fa-trash"></i></button></td>
 
+    `;
+    cuerpoTabla.appendChild(newRow);
+  });
+}
 function showSection(sectionId) {
   const sections = ['formulario', 'preguntas'];
   sections.forEach((id) => {

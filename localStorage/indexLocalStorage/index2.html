@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Local Storage</title>
+</head>
+<body>
+  <h1 id="counter">0</h1>
+  <button onclick="incrementar()">Incrementar</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <script>
+    var contador = parseInt(localStorage.getItem('contador')) || 1;
+    actualizarContador();
+
+    function incrementar() {
+      contador++;
+      actualizarContador();
+      localStorage.setItem('contador', contador);
+    }
+
+    function reiniciar() {
+      contador = 1;
+      actualizarContador();
+      localStorage.setItem('contador', contador);
+    }
+
+    function actualizarContador() {
+      document.getElementById('counter').textContent = contador;
+    }
+  </script>
+</body>
+</html>

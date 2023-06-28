@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aplicación de notas con Local Storage</title>
+</head>
+<body>
+  <h1>Aplicación de Anotaciones</h1>
+  <input type="text" id="noteInput" placeholder="Nueva nota">
+  <button onclick="agregarNota()">Agregar nota</button>
+  <button onclick="eliminarStorage()">Borrar Datos</button>
+  <ul id="noteList"></ul>
+
+  <script>
+    var notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    function mostrarNotas() {
+      var noteList = document.getElementById('noteList');
+      noteList.innerHTML = '';
+
+      for (var i = 0; i < notes.length; i++) {
+        var noteItem = document.createElement('li');
+        noteItem.textContent = notes[i].content;
+        noteList.appendChild(noteItem);
+      }
+    }
+
+    function eliminarStorage(){
+      localStorage.clear();
+      
+    }
+  
+    function agregarNota() {
+      var noteInput = document.getElementById('noteInput');
+      var newNote = {
+        id: Date.now(),
+        content: noteInput.value
+      };
+
+      if (newNote.content !== '') {
+        notes.push(newNote);
+        noteInput.value = '';
+        mostrarNotas();
+        localStorage.setItem('notes', JSON.stringify(notes));
+      }
+    }
+
+    mostrarNotas();
+  </script>
+</body>
+</html>

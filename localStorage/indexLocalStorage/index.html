@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Local Storage</title>
+</head>
+<body>
+
+  <input type="text" id="inputText" placeholder="Escribe algo">
+  <button onclick="guardarValor()">Guardar</button>
+  <button onclick="recuperarValor()">Recuperar</button>
+  <input type="text" id="outputText">
+
+  
+  <script>
+    function guardarValor() {
+      var valor = document.getElementById('inputText').value;
+      localStorage.setItem('miValor', valor);
+      console.log('Valor guardado en el Local Storage');
+    }
+
+    function recuperarValor() {
+      var valor = localStorage.getItem('miValor');
+      console.log('Valor recuperado: ' + valor);
+      document.getElementById('outputText').value = 'Valor recuperado: ' + valor;
+    }
+  </script>
+</body>
+</html>
