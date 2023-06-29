@@ -52,6 +52,22 @@ class CarritoDeCompras {
     this.mostrarCarrito();
     localStorage.removeItem("elementosCarrito");
   }
+
+  totalCompra(){
+    const modalResumen = document.getElementById('modal')
+    modalResumen.innerHTML = ''
+    var a = 0
+    this.elementosCarrito.forEach(elemento => {
+      const total = elemento.precio;
+      
+      a += parseInt(total)
+      
+    })
+    
+    const mostrarTotal = document.createElement('p');
+      mostrarTotal.textContent = `${a}`
+      modalResumen.appendChild(mostrarTotal)
+  }
 }
 
 const miCarrito = new CarritoDeCompras();
@@ -71,4 +87,8 @@ btnAgregar.addEventListener("submit", function (e) {
   descripcion.value = "";
   precio.value = "";
   miCarrito.agregarItem(item);
+  miCarrito.totalCompra()
 });
+
+const botonModal = document.getElementById('botonModal');
+ botonModal.addEventListener("click", miCarrito.totalCompra())
