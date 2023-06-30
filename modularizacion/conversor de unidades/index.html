@@ -6,14 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="./style.css">
+
 
 </head>
 <body>
     
-    <div class="form-comtrol mt-5 p-5">
-        <h1>Conversor de unidades</h1>
+    <div class="form-comtrol mt-5 p-5 ">
+       
+        <div class=" d-flex justify-content-between mt-5">
+          <h1>Conversor de unidades</h1>
+
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#historial" id="btnHistorial">
+            <i class="fa fa-history" aria-hidden="true"></i>
+
+          </button>
+        </div>
         <div class="mb-3 mt-5">
-            <label for="dato" class="form-label">Ingrese el unidad que desea convertir</label>
+            <label for="dato" class="form-label">Ingrese la cantidad que desea convertir</label>
             <input type="number" class="form-control" id="dato">
           </div>
           
@@ -30,7 +40,6 @@
   
 
     
-  <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -43,7 +52,26 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="historial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Historial</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="resultado">
+        <ul id="elementosHistorial" class="list-group p-3"></ul>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" id="borrar">Borrar Historial</button>
         </div>
       </div>
     </div>
