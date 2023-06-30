@@ -65,7 +65,7 @@ class CarritoDeCompras {
     })
     
     const mostrarTotal = document.createElement('p');
-      mostrarTotal.textContent = `${a}`
+      mostrarTotal.textContent = `El Total de la compra es $ ${a}`
       modalResumen.appendChild(mostrarTotal)
   }
 }

@@ -1,4 +1,5 @@
 export function conversorPeso (kg){
     let resultado = kg * 2.205;
-    return resultado;
+    let result = `${parseFloat(kg)} Kg  ➝ lb = ${resultado}`
+    return result;
 }

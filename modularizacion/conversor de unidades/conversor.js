@@ -6,44 +6,51 @@ import { convertirDistancia } from "./js/distancia.js";
 const unidad = document.getElementById('dato'),
 conversion = document.getElementById('conversion'),
 modalResultado = document.getElementById('resultado'),
-btnModal = document.getElementById('btnModal')
+btnModal = document.getElementById('btnModal');
 
 
 
 
-// function mostrarResultado (i){
-    
+
+function calcularResultado (a){
+ 
+    if (a === 
+        "1"){
+        mostrarConversion(convertirDistancia(parseFloat(unidad.value))); 
+        
+    } else if (a === "2"){
+        mostrarConversion(convertirTemperatura(parseFloat(unidad.value))); 
+       
+    } else if (a === "3"){
+
+        mostrarConversion(conversorPeso(parseFloat(unidad.value))); 
+        
+    } else {
+        console.log("error");
+    }
+}
+
+
+function mostrarConversion (operacion){
+    modalResultado.innerHTML = ''
+    const resultado = document.createElement('p');
+    resultado.classList.add('text-center')
+    resultado.textContent = `El resultado es : ${operacion}`;
+    modalResultado.appendChild(resultado);
+
+}
 
 
 btnModal.addEventListener("click", (e)=>{
         e.preventDefault()
 
-    let a = conversion.value
+
+    calcularResultado(conversion.value);
 
 
-    
-        if (a === 
-            "1"){
-            console.log(convertirDistancia(parseFloat(unidad.value))); 
-            
-        } else if (a === "2"){
-            console.log(convertirTemperatura(parseFloat(unidad.value))); 
-           
-        } else if (a === "3"){
-    
-            console.log(conversorPeso(parseFloat(unidad.value))); 
-            
-        } else {
-            console.log("error");
-        }
-    
-    
-
-    ;
    
-  
-
-    unidad.value = '';
+      unidad.value = '';
 
 })
+
 
