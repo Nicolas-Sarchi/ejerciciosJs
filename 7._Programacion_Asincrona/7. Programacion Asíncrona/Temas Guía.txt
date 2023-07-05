@@ -1,0 +1,13 @@
+Programación Asíncrona
+La programación asíncrona es una técnica que permite a tu programa iniciar una tarea de larga duración y seguir respondiendo a otros eventos mientras esa tarea se ejecuta, en lugar de tener que esperar hasta que esa tarea haya terminado. Una vez que dicha tarea ha finalizado, tu programa presenta el resultado.
+
+Callback
+A JavaScript callback is a function which is to be executed after another function has finished execution.
+
+API Fetch
+La API Fetch proporciona una interfaz JavaScript para acceder y manipular partes del canal HTTP, tales como peticiones y respuestas. También provee un método global fetch() (en-US) que proporciona una forma fácil y lógica de obtener recursos de forma asíncrona por la red.
+
+API REST
+Las API REST son el puente de comunicación entre frontend y backend. El recurso que consultamos desde el frontend para responder a las interacciones de un usuario. Y la respuesta que entrega el backend después de procesar solicitudes y consultar bases de datos.
+
+Ahora, con async/await, podemos escribir el código de manera más sincrónica, evitando el uso de .then() y .catch().
