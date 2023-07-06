@@ -19,7 +19,7 @@ const pokemones = async (data) => {
       let divPokemon = `
   
 
-    <div class="card border border-0 shadow-lg p-3 mb-5 bg-body-tertiary rounded col-4 mx-auto mt-3" style="width: 18rem;" id="${result.name}">
+    <div class="card border border-0 shadow-lg p-3 mb-5 bg-body-tertiary rounded col-6 mx-auto mt-3" style="width: 18rem;" id="${result.name}">
   <img src= ${result.sprites.front_default} class="card-img-top" alt="...">
   <div class="card-body text-center">
     <h5 class="card-title">${result.name}</h5>
@@ -29,9 +29,9 @@ const pokemones = async (data) => {
 
   <button class="btn btn-outline-dark" onclick="mostrarAtaques('${result.name}','${result.id}')">Mostrar ataque Especial</button></div>
 </div>
-
-        `;
+`;
       contenedor.innerHTML += divPokemon;
+      console.log(result);
     }
   } catch (error) {
     console.error(error);

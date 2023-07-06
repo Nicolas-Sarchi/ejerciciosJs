@@ -5,11 +5,11 @@ const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 
 const weatherImages = {
-    Clear: 'images/clear.png',
-    Rain: 'images/rain.png',
-    Snow: 'images/snow.png',
-    Clouds: 'images/cloud.png',
-    Haze: 'images/mist.png',
+    Clear: 'https://openweathermap.org/img/wn/01d@2x.png',
+    Rain: 'https://openweathermap.org/img/wn/09d@2x.png',
+    Snow: 'https://openweathermap.org/img/wn/13d@2x.png',
+    Clouds: 'https://openweathermap.org/img/wn/04d@2x.png',
+    Haze: 'https://openweathermap.org/img/wn/50d@2x.png',
   };
 
 search.addEventListener('click', () => {
@@ -17,8 +17,9 @@ search.addEventListener('click', () => {
     const APIKey = '2fecb748b5b060c588450f540e21822c';
     const city = document.querySelector('.search-box input').value;
 
-    if (city === '')
+    if (city === ''){
         return;
+    }
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
@@ -44,6 +45,7 @@ search.addEventListener('click', () => {
 
             
             const weatherMain = json.weather[0].main;
+            
     image.src = weatherImages[weatherMain] || '';
 
             temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
