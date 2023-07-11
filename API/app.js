@@ -1,10 +1,7 @@
-let botonNext, botonPrev;
+let botonNext;
 const botones= document.getElementById('botones')
 const pelicula = document.getElementById('pelicula'),
 buscar =document.getElementById('buscar')
-
-let titulo = "cars";
-const url = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${titulo}?exact=false&titleType=movie`;
 
 const getMovies = async (url) => {
 
@@ -41,7 +38,7 @@ const getMovies = async (url) => {
         
         }
 
-        botonNext = result.next ? `<button type="button" data-url = https://moviesdatabase.p.rapidapi.com${result.next} class="btn btn-primary col-12">Cargar Màs</button>`:"";
+        botonNext = result.next ? `<button type="button" data-url = https://moviesdatabase.p.rapidapi.com${result.next} class="btn btn-primary w-75 mx-auto col-12">Cargar Màs</button>`:"";
         botones.innerHTML =  botonNext; 
     } catch (error) {
         console.error(error);
@@ -50,6 +47,8 @@ const getMovies = async (url) => {
 }
 
 buscar.addEventListener("click", ()=>{
+    const titulo = pelicula.value;
+const url = `https://moviesdatabase.p.rapidapi.com/titles/search/title/${titulo}?exact=false&titleType=movie`;
     getMovies(url)
 })
 
