@@ -1,42 +1,42 @@
 {
-  "products": [
+  "productos": [
     {
       "id": 1,
       "name": "laptop",
       "price": 1499.99,
       "description": "HP laptop",
-      "categoryId": 1
+      "categoriaId": 1
     },
     {
       "id": 2,
       "name": "monitor",
       "price": 199.99,
       "description": "Monitor LCD LG",
-      "categoryId": 1
+      "categoriaId": 1
     },
     {
       "id": 3,
       "name": "mouse",
       "price": 69.99,
       "description": "Mouse Razer Gaming",
-      "categoryId": 2
+      "categoriaId": 2
     },
     {
       "id": 4,
       "name": "Keyboard",
       "price": 149.95,
       "description": "gaming Keyboard",
-      "categoryId": 2
+      "categoriaId": 2
     },
     {
       "name": "corsair k68 keyboard",
       "price": 200,
       "description": "gaming keyboard 2!",
-      "categoryId": 2,
+      "categoriaId": 2,
       "id": 5
     }
   ],
-  "categories": [
+  "categorias": [
     {
       "id": "1",
       "name": "computers",
