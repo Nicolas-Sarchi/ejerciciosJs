@@ -8,11 +8,11 @@
       "categoriaId": 1
     },
     {
-      "id": 2,
       "name": "monitor",
-      "price": 199.99,
+      "price": 1000,
       "description": "Monitor LCD LG",
-      "categoriaId": 1
+      "categoriaId": 1,
+      "id": 2
     },
     {
       "id": 3,
@@ -22,28 +22,21 @@
       "categoriaId": 2
     },
     {
-      "id": 4,
       "name": "Keyboard",
-      "price": 149.95,
+      "price": 149,
       "description": "gaming Keyboard",
-      "categoriaId": 2
-    },
-    {
-      "name": "corsair k68 keyboard",
-      "price": 200,
-      "description": "gaming keyboard 2!",
-      "categoriaId": 2,
-      "id": 5
+      "categoriaId": 1,
+      "id": 4
     }
   ],
   "categorias": [
     {
-      "id": "1",
+      "id": 1,
       "name": "computers",
       "description": "computers, laptops, monitors, etc"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "gaming",
       "description": "mouse, keybords, headphones etc"
     }
