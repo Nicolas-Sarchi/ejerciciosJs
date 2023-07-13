@@ -1,17 +1,17 @@
 {
   "productos": [
     {
-      "id": 1,
-      "name": "laptop",
-      "price": 1499.99,
+      "name": "qqqq",
+      "price": 1499,
       "description": "HP laptop",
-      "categoriaId": 1
+      "categoriaId": 1,
+      "id": 1
     },
     {
       "name": "monitor",
       "price": 1000,
       "description": "Monitor LCD LG",
-      "categoriaId": 1,
+      "categoriaId": 2,
       "id": 2
     },
     {
@@ -22,10 +22,10 @@
       "categoriaId": 2
     },
     {
-      "name": "Keyboard",
-      "price": 149,
-      "description": "gaming Keyboard",
-      "categoriaId": 1,
+      "name": "keyboard",
+      "price": 100,
+      "description": "Keyboard Gaming",
+      "categoriaId": 2,
       "id": 4
     }
   ],

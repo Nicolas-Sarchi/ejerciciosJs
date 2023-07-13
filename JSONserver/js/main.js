@@ -21,9 +21,6 @@ document.addEventListener("click", async function (event) {
   
       try {
         const response = await fetch(`${URL}/productos/${productoId}`);
-        if (!response.ok) {
-          throw new Error("No se pudo obtener el producto");
-        }
         const producto = await response.json();
   
         const formularioModificar = document.getElementById("formularioModificar");
@@ -63,3 +60,5 @@ document.addEventListener("click", async function (event) {
     const modalModificar = new bootstrap.Modal(document.getElementById("modalModificar"));
     modalModificar.hide();
   });
+
+

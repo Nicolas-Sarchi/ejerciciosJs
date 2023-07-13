@@ -1,0 +1,26 @@
+{
+  "Rutas": [
+    {
+      "id": 1,
+      "NomRuta": "Cafetera"
+    },
+    {
+      "NomRuta": "Del Sol",
+      "id": 2
+    }
+  ],
+  "Puntos": [
+    {
+      "id": 1,
+      "NomPuntos": "Manizales",
+      "RutaId": 1,
+      "Imagen": "https://colombia.com/bucaramanga.jpg"
+    },
+    {
+      "id": 2,
+      "NomPuntos": "Armenia",
+      "RutaId": 1,
+      "Imagen": "https://colombia.com/barranca.jpg"
+    }
+  ]
+}
