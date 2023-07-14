@@ -39,7 +39,7 @@
   .title::after {
     width: 18px;
     height: 18px;
-    animation: pulse 1s linear infinite;
+    animation: pulse 1.1s linear infinite;
   }
   
   .message, .signin {

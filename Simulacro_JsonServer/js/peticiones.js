@@ -68,3 +68,20 @@ export async function modificarRuta (rutaId, datosRuta){
         throw error;
       }
     }    
+
+    export async function agregarPunto(datos){
+
+        try {
+            await fetch(`${URL}/Puntos`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(datos),
+            });
+        
+    } catch(error){
+        console.error(error);
+    }
+    }
+    

@@ -69,16 +69,40 @@
 </div>
 
 
-<div id="rutas">
-  <div>
+<div id="rutas" class="mt-5 mx-5 p-3">
+  <div >
     <select class="form-select" id="selectRuta">
       <option selected >Seleccione una ruta</option>
     </select>
   </div>
 
   <div id="puntosContainer">
-    <h2>Puntos de la Ruta:</h2>
-    <ul id="listaPuntos"></ul>
+    <form class="form mt-5" id="formPunto">
+      <p class="title">Registrar un nuevo punto a la ruta</p>
+     
+      <label>
+          <input required="" placeholder="" type="text" class="input" id="nombrePunto">
+          <span>Nombre del punto</span>
+      </label> 
+
+      <button type="submit" class="submit">Agregar</button>
+  </form>
+    <table class="table
+    table-hover	
+    table-light
+    align-middle mt-5 ">
+      <thead>
+        <tr>
+          <th></th>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="listaPuntos">
+      </tbody>
+    </table>
   </div>
 </div>
 
