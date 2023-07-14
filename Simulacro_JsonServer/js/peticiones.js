@@ -1,6 +1,5 @@
-import { listarRutas } from "./listar.js";
 
-const URL = 'http://localhost:3000'
+export const URL = 'http://localhost:3000'
 
 
 export async function getRutas(){
@@ -8,7 +7,7 @@ export async function getRutas(){
         const response = await fetch(`${URL}/Rutas`)
         const rutas = await response.json()
 
-        listarRutas(rutas)
+        return rutas;
 
     } catch(error){
         console.error(error);
@@ -58,4 +57,14 @@ export async function modificarRuta (rutaId, datosRuta){
              console.error(error);
         }
     }
-            
+
+    export async function getPuntosPorRuta(rutaId) {
+      try {
+        const response = await fetch(`${URL}/Puntos?RutaId=${rutaId}`);
+        const puntos = await response.json();
+        return puntos;
+      } catch (error) {
+        console.error("Error al obtener los puntos:", error);
+        throw error;
+      }
+    }    

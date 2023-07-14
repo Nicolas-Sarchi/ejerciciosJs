@@ -1,8 +1,8 @@
 {
   "Rutas": [
     {
-      "id": 1,
-      "NomRuta": "Cafetera"
+      "NomRuta": "Cafetera",
+      "id": 1
     },
     {
       "NomRuta": "Del Sol",
@@ -21,6 +21,18 @@
       "NomPuntos": "Armenia",
       "RutaId": 1,
       "Imagen": "https://colombia.com/barranca.jpg"
+    },
+    {
+      "id": 3,
+      "NomPuntos": "Tunja",
+      "RutaId": 2,
+      "Imagen": "https://colombia.com/bogota.jpg"
+    },
+    {
+      "id": 4,
+      "NomPuntos": "Bucaramanga",
+      "RutaId": 2,
+      "Imagen": "https://colombia.com/cajica.jpg"
     }
   ]
 }
