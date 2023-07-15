@@ -11,8 +11,8 @@
   ],
   "Puntos": [
     {
-      "id": 1,
       "NomPuntos": "Manizales",
+      "id": 1,
       "RutaId": 1,
       "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png"
     },
@@ -33,12 +33,6 @@
       "NomPuntos": "Bucaramanga",
       "RutaId": 2,
       "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png"
-    },
-    {
-      "NomPuntos": "a",
-      "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png",
-      "RutaId": "1",
-      "id": 5
     }
   ]
 }

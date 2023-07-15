@@ -4,10 +4,12 @@ import {
   eliminarRuta,
   URL,
   modificarRuta,
-  getPuntosPorRuta,
-  agregarPunto
+  agregarPunto,
+  eliminarPunto,
+  modificarPunto
 } from "./peticiones.js";
-import { listarRutas } from "./listar.js";
+import { listarRutas, mostrarPuntos } from "./listar.js";
+
 
 let rutas = await getRutas();
 listarRutas(rutas);
@@ -31,7 +33,7 @@ document
   });
 
 document.addEventListener("click", async function (event) {
-  if (event.target.classList.contains("btn-eliminar")) {
+  if (event.target.classList.contains("btn-eliminar-ruta")) {
     const RutaId = event.target.getAttribute("data-id");
     Swal.fire({
       title: "Estas seguro de borrar la ruta?",
@@ -53,7 +55,7 @@ document.addEventListener("click", async function (event) {
 });
 
 document.addEventListener("click", async function (event) {
-  if (event.target.classList.contains("btn-editar")) {
+  if (event.target.classList.contains("btn-editar-ruta")) {
     const rutaId = event.target.getAttribute("data-id");
 
     try {
@@ -98,31 +100,6 @@ document
   });
 
 const selectRuta = document.getElementById("selectRuta");
-const listaPuntos = document.getElementById("listaPuntos");
-
-
-async function mostrarPuntos(rutaId) {
-  listaPuntos.innerHTML = "";
-
-  try {
-    const puntos = await getPuntosPorRuta(rutaId);
-
-    puntos.forEach((punto) => {
-      let tr = `
-        <tr>
-          <td>
-          <img src="${punto.Imagen}" style="width: 60px;"alt="">
-          </td>
-          <td>${punto.id}</td>
-          <td>${punto.NomPuntos}</td>
-        </tr>
-        `;
-        listaPuntos.innerHTML += tr
-    });
-  } catch (error) {
-    console.error("Error al obtener los puntos:", error);
-  }
-}
 
 async function cargarRutas() {
   try {
@@ -149,24 +126,90 @@ cargarRutas();
 
 document
   .getElementById("formPunto")
-  .addEventListener("submit", async function () {
-    selectRuta.addEventListener("change", async (event) => {
-      let rutaId = event.target.value;
-      console.log(rutaId);
-      
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
+  
     const NomPuntos = document.getElementById("nombrePunto").value;
-
-    let nuevaPunto = {
+    const RutaId = selectRuta.value;
+  
+    const nuevoPunto = {
       NomPuntos,
-      Imagen : 'https://cdn-icons-png.flaticon.com/512/854/854929.png',
-     RutaId : rutaId
-      
+      RutaId,
+      Imagen : 'https://cdn-icons-png.flaticon.com/512/854/854929.png'
+    };
+  
+    try {
+      await agregarPunto(nuevoPunto);
+      console.log("El punto ha sido agregado exitosamente.");
+    } catch (error) {
+      console.error("Error al agregar el punto:", error);
+    }
+  });
+
+  document.addEventListener("click", async function (event) {
+    if (event.target.classList.contains("btn-eliminar-punto")) {
+      const PuntoId = event.target.getAttribute("data-id");
+      Swal.fire({
+        title: "Estas seguro de borrar la Punto?",
+        text: "No podràs deshacerlo!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Borralo!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Eliminado!", "La Punto ha sido eliminada.", "success");
+          setTimeout(() => {
+            eliminarPunto(PuntoId);
+          }, 900);
+        }
+      });
+    }
+  });
+
+  document.addEventListener("click", async function (event) {
+    if (event.target.classList.contains("btn-editar-punto")) {
+      const PuntoId = event.target.getAttribute("data-id");
+  
+      try {
+        const response = await fetch(`${URL}/Puntos/${PuntoId}`);
+        const Punto = await response.json();
+  
+        const formularioModificar = document.getElementById(
+          "formularioModificarPunto"
+        );
+        formularioModificar.setAttribute("data-id", PuntoId);
+        document.getElementById("nombreModificarPunto").value = Punto.NomPuntos;
+  
+        const modalModificar = new bootstrap.Modal(
+          document.getElementById("modalModificarPunto")
+        );
+        modalModificar.show();
+      } catch (error) {
+        console.error("Error al obtener el Punto:", error);
+      }
+    }
+  });
+
+  document
+  .getElementById("formularioModificarPunto")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const PuntoId = event.target.getAttribute("data-id");
+    const nombre = document.getElementById("nombreModificarPunto").value;
+
+    const datosPunto = {
+      NomPuntos: nombre
     };
 
-    await agregarPunto(nuevaPunto);
+    await modificarPunto(PuntoId, datosPunto);
 
-    cargarRutas()
+    const modalModificar = new bootstrap.Modal(
+      document.getElementById("modalModificarPunto")
+    );
+    modalModificar.hide();
+  });
 
-    document.getElementById("nombrePunto").value = "";
-  });
-  });
+  

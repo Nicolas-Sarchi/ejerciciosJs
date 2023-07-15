@@ -84,4 +84,40 @@ export async function modificarRuta (rutaId, datosRuta){
         console.error(error);
     }
     }
+
+    export async function eliminarPunto(puntoId) {
+      try {
+        await fetch(`${URL}/Puntos/${puntoId}`, {
+          method: "DELETE",
+        });
+      } catch (error) {
+        console.error("Error al eliminar el Punto:", error);
+      }
+    }
+
+    export async function modificarPunto(PuntoId, datosPunto) {
+      try {
+        // Obtener el punto existente
+        const response = await fetch(`${URL}/Puntos/${PuntoId}`);
+        const puntoExistente = await response.json();
+    
+        // Combinar los datos del punto existente con los nuevos datos
+        const datosActualizados = {
+          ...puntoExistente,
+          ...datosPunto,
+        };
+    
+        // Enviar la solicitud PUT con los datos actualizados
+        await fetch(`${URL}/Puntos/${PuntoId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(datosActualizados),
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    
     

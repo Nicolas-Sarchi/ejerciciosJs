@@ -7,13 +7,46 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
     <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.min.css " rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/formulario.css">
 </head>
 
 <body>
-
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxs-home'></i>
+      <span class="logo-name">Dashboard</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#home">
+          <i class='bx bxs-dashboard'></i>
+          <span class="link-name">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#rutas">
+          <i class='bx bx-map-alt'></i>
+          <span class="link-name">Rutas</span>
+        </a>
+      </li>
+      <li>
+        <a href="#puntosContainer">
+          <i class='bx bx-target-lock'></i>
+          <span class="link-name">Puntos</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="main-content">
+    <header>
+      <div class="toggle">
+        <i class='bx bx-menu' id="sidebar-toggle"></i>
+      </div>
+    </header>
 
 <div class="content mx-5 mt-2" id="home">
     <form class="form" id="formRuta">
@@ -70,7 +103,7 @@
 
 
 <div id="rutas" class="mt-5 mx-5 p-3">
-  <div >
+  <div class="select-custom">
     <select class="form-select" id="selectRuta">
       <option selected >Seleccione una ruta</option>
     </select>
@@ -103,11 +136,34 @@
       <tbody id="listaPuntos">
       </tbody>
     </table>
+    <div class="modal fade" id="modalModificarPunto" tabindex="-1" aria-labelledby="modalModificarPuntoLabel" aria-hidden="true">  <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="form" id="formularioModificarPunto">
+            <p class="title">Editar Ruta</p>
+           
+            <label>
+                <input required="" placeholder="" type="text" class="input" id="nombreModificarPunto">
+                <span>Nombre de la ruta</span>
+            </label> 
+    
+            <button type="submit" class="submit">Guardar Cambios</button>
+        </form>
+        
+        </div>
+      </div>
+     
+  </div>
   </div>
 </div>
 
 <div id="rDisponibles">
 
+</div>
+</div>
 </div>
 
     <script src="./js/main.js" type="module"></script>
