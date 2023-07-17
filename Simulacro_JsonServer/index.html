@@ -9,163 +9,181 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
     <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.min.css " rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/formulario.css">
 </head>
 
 <body>
   <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bxs-home'></i>
-      <span class="logo-name">Dashboard</span>
+    <a href="#" class="logo">
+        <i class='bx bxs-truck'></i>
+        <div class="logo-name"><span>Asmr</span>Prog</div>
+    </a>
+    <div class="side-menu">
+        <li class="active"><a href="#home"><i class='bx bxs-home'></i>Inicio</a></li>
+        <li><a href="#rutas"><i class='bx bx-trip'></i>Gestión de Rutas</a></li>
+        <li ><a href="#puntos"><i class='bx bx-map'></i>Gestión de puntos</a></li>
+
     </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#home">
-          <i class='bx bxs-dashboard'></i>
-          <span class="link-name">Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="#rutas">
-          <i class='bx bx-map-alt'></i>
-          <span class="link-name">Rutas</span>
-        </a>
-      </li>
-      <li>
-        <a href="#puntosContainer">
-          <i class='bx bx-target-lock'></i>
-          <span class="link-name">Puntos</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-  <div class="main-content">
-    <header>
-      <div class="toggle">
-        <i class='bx bx-menu' id="sidebar-toggle"></i>
-      </div>
-    </header>
-
-<div class="content mx-5 mt-2" id="home">
-    <form class="form" id="formRuta">
-        <p class="title">Registrar Nueva Ruta</p>
-       
-        <label>
-            <input required="" placeholder="" type="text" class="input" id="nombreRuta">
-            <span>Nombre de la ruta</span>
-        </label> 
-
-        <button type="submit" class="submit">Agregar</button>
-    </form>
-    
-    <table class="table
-    table-hover	
-    table-light
-    align-middle mt-5 ">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="tablaRutas">
-
-      </tbody>
-    </table>
    
-    <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">  <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="content">
+    <nav>
+        <i class='bx bx-menu'></i>
+     <h1>Dashboard</h1>
+    </nav>
+
+    <main>
+        <div id="home">
+        <div class="header">
+            <div class="left">
+                <h1>Dashboard</h1>
+            </div>
         </div>
-        <div class="modal-body">
-          <form class="form" id="formularioModificar">
-            <p class="title">Editar Ruta</p>
-           
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="nombreModificar">
-                <span>Nombre de la ruta</span>
-            </label> 
-    
-            <button type="submit" class="submit">Guardar Cambios</button>
-        </form>
+
+        <ul class="insights">
+            
+        </ul>
+        </div>
         
+        <div class="bottom-data" id="rutas">
+            
+            <div class="reminders">
+              
+                <form class="form" id="formRuta">
+                    <p class="title">Registrar Nueva Ruta</p>
+                   
+                    <label>
+                        <input required="" placeholder="" type="text" class="input" id="nombreRuta">
+                        <span>Nombre de la ruta</span>
+                    </label> 
+            
+                    <button type="submit" class="submit">Agregar</button>
+                </form>
+                
+               
+               
+                <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="modalModificarLabel" aria-hidden="true">  <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form" id="formularioModificar">
+                        <p class="title">Editar Ruta</p>
+                       
+                        <label>
+                            <input required="" placeholder="" type="text" class="input" id="nombreModificar">
+                            <span>Nombre de la ruta</span>
+                        </label> 
+                
+                        <button type="submit" class="submit">Guardar Cambios</button>
+                    </form>
+                    
+                    </div>
+                  </div>
+                 
+              </div>
+            </div>
+            
+            </div>
+            
+            <div class="orders">
+                <div class="header">
+                    <h3>Recent Orders</h3>
+                   
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Eiminar</th>
+                            <th>Editar</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tablaRutas">
+                       
+                            
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Reminders -->
+            
+
+            <!-- End of Reminders-->
+            
         </div>
-      </div>
-     
-  </div>
-</div>
-</div>
+        <div id="puntos" class="bottom-data">
+            <div class="reminders">
+                <form class="form" id="formPunto">
+                  <p class="title">Registrar un nuevo punto a la ruta</p>
+                 
+                  <label>
+                      <input required="" placeholder="" type="text" class="input" id="nombrePunto">
+                      <span>Nombre del punto</span>
+                  </label> 
+            
+                  <button type="submit" class="submit">Agregar</button>
+              </form>
+               
+          </div>
+            <div class="orders">
+              <select class="form-select" id="selectRuta">
+                <option selected >Seleccione una ruta</option>
+              </select>
 
-
-<div id="rutas" class="mt-5 mx-5 p-3">
-  <div class="select-custom">
-    <select class="form-select" id="selectRuta">
-      <option selected >Seleccione una ruta</option>
-    </select>
-  </div>
-
-  <div id="puntosContainer">
-    <form class="form mt-5" id="formPunto">
-      <p class="title">Registrar un nuevo punto a la ruta</p>
-     
-      <label>
-          <input required="" placeholder="" type="text" class="input" id="nombrePunto">
-          <span>Nombre del punto</span>
-      </label> 
-
-      <button type="submit" class="submit">Agregar</button>
-  </form>
-    <table class="table
-    table-hover	
-    table-light
-    align-middle mt-5 ">
-      <thead>
-        <tr>
-          <th></th>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="listaPuntos">
-      </tbody>
-    </table>
-    <div class="modal fade" id="modalModificarPunto" tabindex="-1" aria-labelledby="modalModificarPuntoLabel" aria-hidden="true">  <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="form" id="formularioModificarPunto">
-            <p class="title">Editar Ruta</p>
-           
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="nombreModificarPunto">
-                <span>Nombre de la ruta</span>
-            </label> 
-    
-            <button type="submit" class="submit">Guardar Cambios</button>
-        </form>
-        
-        </div>
-      </div>
-     
-  </div>
-  </div>
-</div>
-
-<div id="rDisponibles">
+              <table class="table
+              table-hover	
+              table-light
+              align-middle mt-5 ">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="listaPuntos">
+                </tbody>
+              </table>
+              <div class="modal fade" id="modalModificarPunto" tabindex="-1" aria-labelledby="modalModificarPuntoLabel" aria-hidden="true">  <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form" id="formularioModificarPunto">
+                      <p class="title">Editar Ruta</p>
+                     
+                      <label>
+                          <input required="" placeholder="" type="text" class="input" id="nombreModificarPunto">
+                          <span>Nombre de la ruta</span>
+                      </label> 
+              
+                      <button type="submit" class="submit">Guardar Cambios</button>
+                  </form>
+                  
+                  </div>
+                </div>
+               
+            </div>
+            </div>
+            </div>
+          
+          
+          
+          </div>
+    </main>
 
 </div>
-</div>
-</div>
 
+    <script src="./js/index.js"></script>
     <script src="./js/main.js" type="module"></script>
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

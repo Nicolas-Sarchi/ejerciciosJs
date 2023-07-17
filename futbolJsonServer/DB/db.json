@@ -1,0 +1,245 @@
+{
+  "equipos": [
+    {
+      "id": 1,
+      "nombre": "Alianza Petrolera",
+      "escudo": "https://th.bing.com/th/id/OIP.JlJcjjfusp2-ZoQsFf5LRgHaHa?pid=ImgDet&rs=1",
+      "ciudad": "Barrancabermeja"
+    },
+    {
+      "id": 2,
+      "nombre": "América de Cali",
+      "escudo": "https://th.bing.com/th/id/OIP.HSC32_RmSy6JSZpTE6zF9QHaI4?pid=ImgDet&rs=1",
+      "ciudad": "Cali"
+    },
+    {
+      "id": 3,
+      "nombre": "Atlético Bucaramanga",
+      "escudo": "https://th.bing.com/th/id/OIP.yfF47psZgrZ26htfOdmT5wHaIT?pid=ImgDet&rs=1",
+      "ciudad": "Bucaramanga"
+    },
+    {
+      "nombre": "Puputa",
+      "ciudad": "caracas",
+      "id": 4
+    },
+    {
+      "nombre": "indigente mediojean",
+      "ciudad": "metrallo",
+      "escudo": "https://th.bing.com/th/id/R.23b21d6dcf8544d62dad0e593ebae968?rik=mAUS9NNMIuM7Sg&riu=http%3a%2f%2fa.espncdn.com%2fi%2fteamlogos%2fsoccer%2f500%2fdefault-team-logo-500.png&ehk=4ZnNJZmwTUjmHtEMe5EhkZ7N7IYl6y%2fWwXo71drACA8%3d&risl=&pid=ImgRaw&r=0",
+      "id": 5
+    },
+    {
+      "nombre": "autentico naciopan",
+      "ciudad": "metrallo",
+      "escudo": "https://th.bing.com/th/id/R.23b21d6dcf8544d62dad0e593ebae968?rik=mAUS9NNMIuM7Sg&riu=http%3a%2f%2fa.espncdn.com%2fi%2fteamlogos%2fsoccer%2f500%2fdefault-team-logo-500.png&ehk=4ZnNJZmwTUjmHtEMe5EhkZ7N7IYl6y%2fWwXo71drACA8%3d&risl=&pid=ImgRaw&r=0",
+      "id": 6
+    }
+  ],
+  "jugadores": [
+    {
+      "id": 1,
+      "nombre": "Jose Chunga",
+      "posicion": "Portero",
+      "equipoId": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Luciano Ospina",
+      "posicion": "Defensa Central",
+      "equipoId": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Pedro Franco",
+      "posicion": "Defensa Central",
+      "equipoId": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Leonardo",
+      "posicion": "Lateral Izquierdo",
+      "equipoId": 1
+    },
+    {
+      "id": 5,
+      "nombre": "Efraín Navarro",
+      "posicion": "Lateral Derecho",
+      "equipoId": 1
+    },
+    {
+      "id": 6,
+      "nombre": "Rubén Manjarrés",
+      "posicion": "Mediocampista",
+      "equipoId": 1
+    },
+    {
+      "id": 7,
+      "nombre": "Royscer Colpa",
+      "posicion": "Mediocampista",
+      "equipoId": 1
+    },
+    {
+      "id": 8,
+      "nombre": "Jair Castillo",
+      "posicion": "Mediocampista",
+      "equipoId": 1
+    },
+    {
+      "id": 9,
+      "nombre": "Luis Angulo",
+      "posicion": "Delantero",
+      "equipoId": 1
+    },
+    {
+      "id": 10,
+      "nombre": "Pablo Bueno",
+      "posicion": "Delantero",
+      "equipoId": 1
+    },
+    {
+      "id": 11,
+      "nombre": "Kevin Torres",
+      "posicion": "Delantero",
+      "equipoId": 1
+    },
+    {
+      "id": 12,
+      "nombre": "Diego Novoa",
+      "posicion": "Portero",
+      "equipoId": 2
+    },
+    {
+      "id": 13,
+      "nombre": "John García",
+      "posicion": "Defensa Central",
+      "equipoId": 2
+    },
+    {
+      "id": 14,
+      "nombre": "Kévin Angulo",
+      "posicion": "Defensa Central",
+      "equipoId": 2
+    },
+    {
+      "id": 15,
+      "nombre": "Edwin velasco",
+      "posicion": "Lateral Izquierdo",
+      "equipoId": 2
+    },
+    {
+      "id": 16,
+      "nombre": "Daniel Quiñones",
+      "posicion": "Lateral Derecho",
+      "equipoId": 2
+    },
+    {
+      "id": 17,
+      "nombre": "Luis Paz",
+      "posicion": "Mediocampista",
+      "equipoId": 2
+    },
+    {
+      "id": 18,
+      "nombre": "Juan Portilla",
+      "posicion": "Mediocampista",
+      "equipoId": 2
+    },
+    {
+      "id": 19,
+      "nombre": "Jader Quiñones",
+      "posicion": "Mediocampista",
+      "equipoId": 2
+    },
+    {
+      "id": 20,
+      "nombre": "Andrés Sarmiento",
+      "posicion": "Delantero",
+      "equipoId": 2
+    },
+    {
+      "id": 21,
+      "nombre": "Daniel Mosquera",
+      "posicion": "Delantero",
+      "equipoId": 2
+    },
+    {
+      "id": 22,
+      "nombre": "Adrián Ramos",
+      "posicion": "Delantero",
+      "equipoId": 2
+    },
+    {
+      "id": 23,
+      "nombre": "Cristopher Varela",
+      "posicion": "Portero",
+      "equipoId": 3
+    },
+    {
+      "id": 24,
+      "nombre": "Nicolás Marotta",
+      "posicion": "Defensa Central",
+      "equipoId": 3
+    },
+    {
+      "id": 25,
+      "nombre": "Francisco Meza",
+      "posicion": "Defensa Central",
+      "equipoId": 3
+    },
+    {
+      "id": 26,
+      "nombre": "Cristian Florez",
+      "posicion": "Lateral Izquierdo",
+      "equipoId": 3
+    },
+    {
+      "id": 27,
+      "nombre": "Hadier Borja",
+      "posicion": "Lateral Derecho",
+      "equipoId": 3
+    },
+    {
+      "id": 28,
+      "nombre": "Diego Chávez",
+      "posicion": "Mediocampista",
+      "equipoId": 3
+    },
+    {
+      "id": 29,
+      "nombre": "Javier Reina",
+      "posicion": "Mediocampista",
+      "equipoId": 3
+    },
+    {
+      "id": 30,
+      "nombre": "Juan David Rodríguez",
+      "posicion": "Mediocampista",
+      "equipoId": 3
+    },
+    {
+      "id": 31,
+      "nombre": "Yeison Moreno",
+      "posicion": "Delantero",
+      "equipoId": 3
+    },
+    {
+      "id": 32,
+      "nombre": "Jhon Pérez",
+      "posicion": "Delantero",
+      "equipoId": 3
+    },
+    {
+      "id": 33,
+      "nombre": "Emanuel Zagert",
+      "posicion": "Delantero",
+      "equipoId": 3
+    },
+    {
+      "nombre": "Luciano Pons",
+      "posicion": "Delantero",
+      "equipoId": "5",
+      "id": 34
+    }
+  ]
+}

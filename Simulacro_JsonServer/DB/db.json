@@ -33,6 +33,18 @@
       "NomPuntos": "Bucaramanga",
       "RutaId": 2,
       "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png"
+    },
+    {
+      "NomPuntos": "Pereira",
+      "RutaId": "1",
+      "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png",
+      "id": 5
+    },
+    {
+      "NomPuntos": "de tu madre",
+      "RutaId": "1",
+      "Imagen": "https://cdn-icons-png.flaticon.com/512/854/854929.png",
+      "id": 7
     }
   ]
 }

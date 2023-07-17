@@ -1,18 +1,17 @@
-import {
-  getRutas,
-  agregarRuta,
-  eliminarRuta,
+import {getRutas,agregarRuta,
+eliminarRuta,
   URL,
   modificarRuta,
   agregarPunto,
   eliminarPunto,
   modificarPunto
 } from "./peticiones.js";
-import { listarRutas, mostrarPuntos } from "./listar.js";
+import { listarRutas, mostrarPuntos, listarRutasHome } from "./listar.js";
 
 
 let rutas = await getRutas();
 listarRutas(rutas);
+listarRutasHome(rutas);
 
 document
   .getElementById("formRuta")
@@ -24,10 +23,13 @@ document
     let nuevaRuta = {
       NomRuta,
     };
+    try{
+    await agregarRuta(nuevaRuta);
 
-    agregarRuta(nuevaRuta);
-
-    getRutas();
+    }
+    catch(error){
+      console.error(error);
+    }
 
     document.getElementById("nombreRuta").value = "";
   });
@@ -150,7 +152,7 @@ document
     if (event.target.classList.contains("btn-eliminar-punto")) {
       const PuntoId = event.target.getAttribute("data-id");
       Swal.fire({
-        title: "Estas seguro de borrar la Punto?",
+        title: "Estas seguro de borrar el Punto?",
         text: "No podràs deshacerlo!",
         icon: "warning",
         showCancelButton: true,
@@ -159,7 +161,7 @@ document
         confirmButtonText: "Si, Borralo!",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("Eliminado!", "La Punto ha sido eliminada.", "success");
+          Swal.fire("Eliminado!", "El Punto ha sido eliminado.", "success");
           setTimeout(() => {
             eliminarPunto(PuntoId);
           }, 900);
@@ -212,4 +214,7 @@ document
     modalModificar.hide();
   });
 
+  
+  
+  
   

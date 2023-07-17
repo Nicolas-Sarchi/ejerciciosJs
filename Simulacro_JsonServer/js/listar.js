@@ -8,17 +8,16 @@ export function listarRutas (rutas){
         <td>${ruta.id}</td>
         <td>${ruta.NomRuta}</td>
         <td>
-          <button type="button" data-id="${ruta.id}" class="btn-eliminar-ruta btn btn-danger btn-sm">Eliminar</button>
+<i  data-id="${ruta.id}" class='bx bx-trash btn-eliminar-ruta btn btn-danger btn-sm'></i>
         </td>
         <td>
-        <button type="button" data-id="${ruta.id}" class="btn-editar-ruta btn btn-warning btn-sm">Editar</button>
+     <i data-id="${ruta.id}" class='bx bx-pencil btn btn-warning btn-sm btn-editar-ruta'></i>
         </td>
       </tr>`;
   
       tablaRutas.innerHTML += tr;
     })
 }
-const listaPuntos = document.getElementById("listaPuntos");
 
 export async function mostrarPuntos(rutaId) {
   listaPuntos.innerHTML = "";
@@ -35,10 +34,10 @@ export async function mostrarPuntos(rutaId) {
           <td>${punto.id}</td>
           <td>${punto.NomPuntos}</td>
           <td>
-          <button type="button" data-id="${punto.id}" class="btn-eliminar-punto btn btn-danger btn-sm">Eliminar</button>
+        <i class='bx bx-trash btn-eliminar-punto btn btn-danger btn-sm' data-id="${punto.id}" ></i>
         </td>
         <td>
-        <button type="button" data-id="${punto.id}" class="btn-editar-punto btn btn-warning btn-sm">Editar</button>
+<i data-id="${punto.id}"  class='bx bx-pencil btn btn-warning btn-sm btn-editar-punto'></i>
         </td>
         </tr>
         `;
@@ -47,4 +46,23 @@ export async function mostrarPuntos(rutaId) {
   } catch (error) {
     console.error("Error al obtener los puntos:", error);
   }
+}
+
+
+export function listarRutasHome (rutas){
+  const div = document.querySelector('.insights');
+  div.innerHTML = ""
+  rutas.forEach(ruta => {
+      let li= ` <li>
+      <i class='bx bx-map-alt'></i>
+      <span class="info">
+          <h3>
+              Ruta: ${ruta.id}
+          </h3>
+          <p>${ruta.NomRuta}</p>
+      </span>
+  </li>`;
+
+    div.innerHTML += li;
+  })
 }
