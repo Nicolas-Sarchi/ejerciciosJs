@@ -1,24 +1,3 @@
-
-function showSection(sectionId) {
-    const sections = ['home', 'rutas','puntos'];
-    sections.forEach((id) => {
-        const section = document.getElementById(id);
-        if (id === sectionId) {
-            section.style.display = 'block';
-        } else {
-            section.style.display = 'none';
-        }
-    });
-}
-
-
-document.querySelector("a[href='#home']").addEventListener("click", () => showSection("home"));
-document.querySelector("a[href='#rutas']").addEventListener("click", () => showSection("rutas"));
-document.querySelector("a[href='#puntos']").addEventListener("click", () => showSection("puntos"));
-
-
-showSection("home");
-
 const sideLinks = document.querySelectorAll('.sidebar .side-menu a');
 
 sideLinks.forEach(item => {
@@ -46,4 +25,3 @@ window.addEventListener('resize', () => {
     }
     
 });
-

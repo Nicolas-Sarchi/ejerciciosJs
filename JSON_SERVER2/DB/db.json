@@ -1,0 +1,40 @@
+{
+  "productos": [
+    {
+      "name": "qqqq",
+      "price": 1499,
+      "description": "HP laptop",
+      "categoriaId": 1,
+      "id": 1
+    },
+    {
+      "name": "monitor",
+      "price": 1000,
+      "description": "Monitor LCD LG",
+      "categoriaId": 2,
+      "id": 2
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nombre": "computadoras"
+    },
+    {
+      "id": 2,
+      "nombre": "monitores"
+    },
+    {
+      "nombre": "Productos descongelados",
+      "id": 4
+    },
+    {
+      "nombre": "pacoquer",
+      "id": 5
+    },
+    {
+      "nombre": "r",
+      "id": 6
+    }
+  ]
+}
