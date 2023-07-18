@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.min.css "
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/formulario.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <a href="#" class="logo">
+        <i class="bx bx-map"></i>
+        <div class="logo-name"><span>Campus</span>Map</div>
+      </a>
+      <div class="side-menu">
+        <li class="active">
+          <a href="#clima"><i class="bx bx-cloud"></i>Clima</a>
+        </li>
+        <li>
+          <a href="#departamentos"
+            ><i class="bx bx-map-alt"></i>Gestión de Dptos</a
+          >
+        </li>
+        <li>
+          <a href="#ciudades"><i class="bx bxs-city"></i>Gestión de ciudades</a>
+        </li>
+      </div>
+    </div>
+    <div class="content">
+      <nav>
+        <i class="bx bx-menu"></i>
+        <input type="checkbox" id="theme-toggle" hidden />
+        <label for="theme-toggle" class="theme-toggle"></label>
+      </nav>
+      <main>
+        <div id="clima">
+            <div class="header">
+                <div class="left">
+                    <h1>Clima</h1>
+                </div>
+            </div>
+    
+            <ul class="insights" id="contenedor">
+            </ul>
+            </div>
+        <div class="bottom-data" id="departamentos">
+          <div class="reminders">
+            <form class="form" id="formDepartamento">
+              <p class="title">Registrar Nuevo Departamento</p>
+
+              <label>
+                <input
+                  required=""
+                  placeholder=""
+                  type="text"
+                  class="input"
+                  id="nombreDepartamento"
+                />
+                <span>Nombre del Departamento</span>
+              </label>
+              <button type="submit" class="submit">Agregar</button>
+            </form>
+
+            <div class="orders">
+              <div class="header">
+                <h3>Departamentos</h3>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Eiminar</th>
+                    <th>Editar</th>
+                  </tr>
+                </thead>
+                <tbody id="tablaDepartamentos"></tbody>
+              </table>
+            </div>
+
+            <div
+              class="modal fade"
+              id="modalModificarDepartamento"
+              tabindex="-1"
+              aria-labelledby="modalModificarDepartamentoLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form" id="formModificarDepto">
+                      <p class="title">Modificar Departamento</p>
+
+                      <label>
+                        <input
+                          required=""
+                          placeholder=""
+                          type="text"
+                          class="input"
+                          id="nombreDeptoModificar"
+                        />
+                        <span>Nombre del Departamento</span>
+                      </label>
+
+                      <button type="submit" class="submit">
+                        Guardar Cambios
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="ciudades" class="bottom-data">
+          <div class="reminders">
+            <form class="form" id="formCiudad">
+              <p class="title">Registrar una nueva ciudad al Departamento</p>
+
+              <label>
+                <input
+                  required=""
+                  placeholder=""
+                  type="text"
+                  class="input"
+                  id="nombreCiudad"
+                />
+                <span>Nombre de la ciudad</span>
+              </label>
+              <label>
+                <input
+                  required=""
+                  placeholder=""
+                  type="number"
+                  class="input"
+                  id="latCiudad"
+                  step="any"
+                />
+                <span>Latitud</span>
+              </label>
+              <label>
+                <input
+                  required=""
+                  placeholder=""
+                  type="number"
+                  class="input"
+                  id="longCiudad"
+                  step="any"
+                />
+                <span>Longitud</span>
+              </label>
+
+              <button type="submit" class="submit">Agregar</button>
+            </form>
+          </div>
+          <div class="orders">
+            <select class="form-select" id="selectDepartamento">
+              <option selected>Seleccione un Departamento</option>
+            </select>
+
+            <table class="table table-hover  mt-5" id="tablaBoostrap">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Latitud</th>
+                  <th>Longitud</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="listaCiudades"></tbody>
+            </table>
+            <div
+              class="modal fade"
+              id="modalModificarCiudad"
+              tabindex="-1"
+              aria-labelledby="modalModificarCiudadLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form" id="formModificarCiudad">
+                      <p class="title">Editar Ciudad</p>
+
+                      <label>
+                        <input
+                          required=""
+                          placeholder=""
+                          type="text"
+                          class="input"
+                          id="nombreModificarCiudad"
+                        />
+                        <span>Nombre de la Ciudad</span>
+                      </label>
+                      <label>
+                        <input
+                          required=""
+                          placeholder=""
+                          type="number"
+                          step="any"
+                          class="input"
+                          id="latModificarCiudad"
+                        />
+                        <span>Latitud</span>
+                      </label>
+                      <label>
+                        <input
+                          required=""
+                          placeholder=""
+                          type="number"
+                          class="input"
+                          step="any"
+                          id="lonModificarCiudad"
+                        />
+                        <span>Longitud</span>
+                      </label>
+
+                      <button type="submit" class="submit">
+                        Guardar Cambios
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="./js/index.js"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.all.min.js "></script>
+  </body>
+</html>

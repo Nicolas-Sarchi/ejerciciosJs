@@ -1,0 +1,64 @@
+{
+  "Departamentos": [
+    {
+      "id": 1,
+      "nomDepartamento": "Santander"
+    },
+    {
+      "id": 2,
+      "nomDepartamento": "Cundinamarca"
+    }
+  ],
+  "Ciudades": [
+    {
+      "id": 1,
+      "nomCiudad": "Bucaramanga",
+      "DepartamentoId": 1,
+      "imagen": "https://cdn-icons-png.flaticon.com/128/2942/2942149.png",
+      "coordenadas": {
+        "lat": 4,
+        "lon": 72
+      }
+    },
+    {
+      "id": 2,
+      "nomCiudad": "Barrancabermeja",
+      "DepartamentoId": 1,
+      "imagen": "https://cdn-icons-png.flaticon.com/128/2942/2942149.png",
+      "coordenadas": {
+        "lat": 4,
+        "lon": 72
+      }
+    },
+    {
+      "id": 3,
+      "nomCiudad": "Bogotá",
+      "DepartamentoId": 2,
+      "imagen": "https://cdn-icons-png.flaticon.com/128/2942/2942149.png",
+      "coordenadas": {
+        "lat": 4,
+        "lon": 72
+      }
+    },
+    {
+      "id": 4,
+      "nomCiudad": "Cajicá",
+      "DepartamentoId": 2,
+      "imagen": "https://cdn-icons-png.flaticon.com/128/2942/2942149.png",
+      "coordenadas": {
+        "lat": 4,
+        "lon": 72
+      }
+    },
+    {
+      "nomCiudad": "San Gil",
+      "DepartamentoId": "1",
+      "imagen": "https://cdn-icons-png.flaticon.com/128/2942/2942149.png",
+      "coordenadas": {
+        "lat": "12",
+        "lon": "3"
+      },
+      "id": 5
+    }
+  ]
+}

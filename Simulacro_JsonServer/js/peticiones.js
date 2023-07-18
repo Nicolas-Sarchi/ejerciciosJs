@@ -97,23 +97,13 @@ export async function modificarRuta (rutaId, datosRuta){
 
     export async function modificarPunto(PuntoId, datosPunto) {
       try {
-        // Obtener el punto existente
-        const response = await fetch(`${URL}/Puntos/${PuntoId}`);
-        const puntoExistente = await response.json();
-    
-        // Combinar los datos del punto existente con los nuevos datos
-        const datosActualizados = {
-          ...puntoExistente,
-          ...datosPunto,
-        };
-    
-        // Enviar la solicitud PUT con los datos actualizados
+       
         await fetch(`${URL}/Puntos/${PuntoId}`, {
-          method: "PUT",
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(datosActualizados),
+          body: JSON.stringify(datosPunto),
         });
       } catch (error) {
         console.error(error);

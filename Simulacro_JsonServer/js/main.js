@@ -115,7 +115,7 @@ async function cargarRutas() {
     });
 
     selectRuta.addEventListener("change", async (event) => {
-      let rutaId = event.target.value;
+      let rutaId = event.target.dataset.id;
       console.log(rutaId);
       await mostrarPuntos(rutaId);
     });
